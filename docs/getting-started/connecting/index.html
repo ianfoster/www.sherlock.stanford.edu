@@ -1,0 +1,1443 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/getting-started/connecting/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Connecting - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#connecting-to-sherlock" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Connecting
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Connecting
+      </label>
+    
+    <a href="./" title="Connecting" class="md-nav__link md-nav__link--active">
+      Connecting
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credentials" class="md-nav__link">
+    Credentials
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys" class="md-nav__link">
+    Host keys
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys-warning" class="md-nav__link">
+    Host keys warning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password" class="md-nav__link">
+    Password
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-factor-2fa" class="md-nav__link">
+    Second factor (2FA)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-failures" class="md-nav__link">
+    Authentication failures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-computing" class="md-nav__link">
+    Start computing
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/ondemand/" title="OnDemand" class="md-nav__link">
+      OnDemand
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/filesystems/" title="Filesystems" class="md-nav__link">
+      Filesystems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-transfer/" title="Data transfer" class="md-nav__link">
+      Data transfer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/mariadb/" title="MariaDB" class="md-nav__link">
+      MariaDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/singularity/" title="Singularity" class="md-nav__link">
+      Singularity
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#credentials" class="md-nav__link">
+    Credentials
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys" class="md-nav__link">
+    Host keys
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys-warning" class="md-nav__link">
+    Host keys warning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password" class="md-nav__link">
+    Password
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-factor-2fa" class="md-nav__link">
+    Second factor (2FA)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-failures" class="md-nav__link">
+    Authentication failures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-computing" class="md-nav__link">
+    Start computing
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/getting-started/connecting.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="connecting-to-sherlock">Connecting <small>to Sherlock </small><a class="headerlink" href="#connecting-to-sherlock" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Sherlock account required</p>
+<p>To be able to connect to Sherlock, you must first obtain a <a href="/docs/getting-started/prerequisites#how-to-request-an-account">Sherlock
+account</a>.</p>
+</div>
+<h2 id="credentials">Credentials<a class="headerlink" href="#credentials" title="Permanent link">#</a></h2>
+<p>All users must have a <a href="https://uit.stanford.edu/service/accounts/sunetids">Stanford SUNet ID</a> and a <a href="/docs/getting-started/prerequisites#how-to-request-an-account">Sherlock
+account</a> to log in to Sherlock. Your Sherlock account uses the
+same username/password as your SUnet ID:</p>
+<div class="codehilite"><pre><span></span>Username: SUNet ID
+Password: SUNet ID password
+</pre></div>
+
+
+<p>To request a Sherlock account, please see the <a href="/docs/getting-started/prerequisites#how-to-request-an-account">Prerequisites</a>
+page.</p>
+<div class="admonition important">
+<p class="admonition-title">Resetting passwords</p>
+<p>Sherlock does <strong>not</strong> store your SUNet ID password. As a consequence, we
+are unable to reset your password. If you require password assistance,
+please see the <a href="https://accounts.stanford.edu/">SUNet Account page</a>.</p>
+</div>
+<h2 id="connection">Connection<a class="headerlink" href="#connection" title="Permanent link">#</a></h2>
+<p>Access to Sherlock is provided via Secure Shell (SSH) login. Most Unix-like
+operating systems provide an SSH client by default that can be accessed by
+typing the <code>ssh</code> command in a terminal window.</p>
+<p>To login to Sherlock, open a terminal and type the following command, where
+<code>&lt;sunetid&gt;</code> should be replaced by your <em>actual</em> SUNet ID:</p>
+<div class="codehilite"><pre><span></span>$ ssh &lt;sunetid&gt;@login.sherlock.stanford.edu
+</pre></div>
+
+<p>Upon logging in, you will be connected to one of Sherlock's load-balanced login
+node. You should be automatically directed to the least-loaded login node at
+the moment of your connection, which should give you the best possible
+environment to work.</p>
+<h3 id="host-keys">Host keys<a class="headerlink" href="#host-keys" title="Permanent link">#</a></h3>
+<p>Upon your very first connection to Sherlock, you will be greeted by a warning
+such as :</p>
+<div class="codehilite"><pre><span></span>The authenticity of host &#39;login.sherlock.stanford.edu&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+
+
+<p>The same warning will be displayed if your try to connect to one of the <a href="/docs/storage/data-transfer/#data-transfer-node-dtn">Data
+Transfer Node (DTN)</a>:</p>
+<div class="codehilite"><pre><span></span>The authenticity of host &#39;dtn.sherlock.stanford.edu&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+
+
+<p>This warning is normal: your SSH client warns you that it is the first time it
+sees that new computer. To make sure you are actually connecting to the right
+machine, you should compare the ECDSA key fingerprint shown in the message with
+one of the fingerprints below:</p>
+<table>
+<thead>
+<tr>
+<th>Key type</th>
+<th>Key Fingerprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RSA</td>
+<td><code>SHA256:T1q1Tbq8k5XBD5PIxvlCfTxNMi1ORWwKNRPeZPXUfJA</code><br/><small>legacy format: <code>f5:8f:01:46:d1:f9:66:5d:33:58:b4:82:d8:4a:34:41</code></small></td>
+</tr>
+<tr>
+<td>ECDSA</td>
+<td><code>SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg</code><br/><small>legacy format: <code>70:4c:76:ea:ae:b2:0f:81:4b:9c:c6:5a:52:4c:7f:64</code></small></td>
+</tr>
+</tbody>
+</table>
+<p>If they match, you can proceed and type ‘yes’. Your SSH program will then store
+that key and will verify it for every subsequent SSH connection, to make sure
+that the server you're connecting to is indeed Sherlock.</p>
+<h4 id="host-keys-warning">Host keys warning<a class="headerlink" href="#host-keys-warning" title="Permanent link">#</a></h4>
+<p>If you've connected to Sherlock 1.0 before, there's a good chance the
+Sherlock 1.0 keys were stored by your local SSH client. In that case, when
+connecting to Sherlock 2.0 using the <code>sherlock.stanford.edu</code> alias, you
+will be presented with the following message:</p>
+<div class="codehilite"><pre><span></span>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: POSSIBLE DNS SPOOFING DETECTED! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+The RSA host key for sherlock.stanford.edu has changed, and the key for
+the corresponding IP address 171.66.97.101 is unknown. This could
+either mean that DNS SPOOFING is happening or the IP address for the
+host and its host key have changed at the same time.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle
+attack)!  It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:T1q1Tbq8k5XBD5PIxvlCfTxNMi1ORWwKNRPeZPXUfJA.
+Please contact your system administrator.
+</pre></div>
+
+
+<p>You can just check that the SHA256 key listed in that warning message
+correctly matches the one listed in the table above, and if that's the
+case, you can safely remove the <code>sherlock.stanford.edu</code> entry from your
+<code>~/.ssh/known_hosts</code> file with the following command on your local machine:</p>
+<div class="codehilite"><pre><span></span>$ ssh-keygen -R sherlock.stanford.edu
+</pre></div>
+
+
+<p>and then connect again. You'll see the first-connection prompt <a href="#host-keys">mentioned
+above</a>, and your SSH client will store the new keys for future
+connections.</p>
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">#</a></h3>
+<h4 id="password">Password<a class="headerlink" href="#password" title="Permanent link">#</a></h4>
+<p>To ease access and increase compatibility<sup id="fnref:krb_legacy"><a class="footnote-ref" href="#fn:krb_legacy">1</a></sup> with different
+platforms, Sherlock allows a simple password-based authentication mechanism for
+SSH.<sup id="fnref:auth_methods"><a class="footnote-ref" href="#fn:auth_methods">2</a></sup>.</p>
+<p>Upon connection, you will be asked for your SUNet ID password with the
+following prompt:</p>
+<div class="codehilite"><pre><span></span>&lt;sunetid&gt;@login.sherlock.stanford.edu&#39;s password:
+</pre></div>
+
+<p>Enter your password, and if it's correct, you should see the following line:</p>
+<div class="codehilite"><pre><span></span>Authenticated with partial success.
+</pre></div>
+
+<h4 id="second-factor-2fa">Second factor (2FA)<a class="headerlink" href="#second-factor-2fa" title="Permanent link">#</a></h4>
+<p>Sherlock implements Stanford's <a href="https://uit.stanford.edu/guide/securitystandards">Minimum Security Standards</a>
+policies which mandate two-step authentication to access the cluster.</p>
+<p>Two-step authentication protects your personal information and credentials by
+combining something only you <em>know</em> (your password) with something only you
+<em>have</em> (your phone, tablet or token). This prevents an attacker who would steal
+your password to actually use it to impersonate you. For more details about
+two-step authentication at Stanford, please refer to the <a href="https://uit.stanford.edu/service/webauth/twostep">University IT
+two-step</a> page.</p>
+<p>After successfully entering your password, you'll be prompted for your second
+authentication factor with a message like this:</p>
+<div class="codehilite"><pre><span></span>Duo two-factor login for &lt;sunetid&gt;
+
+Enter a passcode or select one of the following options:
+
+ 1. Duo Push to XXX-XXX-9999
+ 2. Phone call to XXX-XXX-9999
+ 3. SMS passcodes to XXX-XXX-9999 (next code starts with: 9)
+
+Passcode or option (1-3):
+</pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Avoiding two-factor prompt on each connection</p>
+<p>If you routinely open multiple sessions to Sherlock, having to confirm each
+one of them with a second authentication factor could rapidely become
+cumbersome. To work around this, the OpenSSH client allows multiplexing
+channels and re-using existing authenticated for opening new sessions.
+Please see the <a href="/docs/advanced-topics/connection#avoiding-multiple-duo-prompts">Advanced Connection Options</a> page for more
+details.</p>
+</div>
+<p>If your second factor is accepted, you'll see the following message:</p>
+<div class="codehilite"><pre><span></span>Success. Logging you in...
+</pre></div>
+
+
+<h3 id="authentication-failures">Authentication failures<a class="headerlink" href="#authentication-failures" title="Permanent link">#</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Excessive authentication failures</p>
+<p>Entering an invalid password multiple times will result in a (temporary)
+ban of your IP address.</p>
+</div>
+<p>To prevent brute-force password guessing attacks on Sherlock login nodes, we
+automatically block IP addresses that generate too many authentication failures
+in a given time span. This results in a temporary ban of the infringing IP
+address, and the impossibility for the user to connect to Sherlock from that
+IP address.</p>
+<p>When this happens, your SSH connection attempts will result in the following
+error:</p>
+<div class="codehilite"><pre><span></span>ssh: connect to host login.sherlock.stanford.edu port 22: Connection refused
+</pre></div>
+
+
+<p>IP blocked by this mechanism will automatically be authorized again after some
+time.</p>
+<div class="admonition warning">
+<p class="admonition-title">SSHFS on macOS</p>
+<p>SSHFS on macOS is known to try to <a href="/docs/storage/data-transfer#sshfs">automatically reconnect</a>
+filesystem mounts after resuming from sleep or uspend, even without any
+valid credentials.  As a result, it will generate a lot of failed
+connection attempts and likely make your IP address blacklisted on login
+nodes.</p>
+<p>Make sure to unmount your SSHFS drives before putting your macOS system
+to sleep to avoid this situation.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">VPN</p>
+<p>If your IP got blocked and you have an urgent need to connect, before the
+automatic blacklist expiration, we recommend trying to connect through
+<a href="https://uit.stanford.edu/service/vpn">Stanford's VPN</a>: your computer will then use a different IP
+address and will not be affected by the ban on your regular IP address.</p>
+</div>
+<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">#</a></h2>
+<p>Congratulations! You've successfully connected to Sherlock. You'll be greeted
+by the following <em>message of the day</em>:</p>
+<div class="codehilite"><pre><span></span>             --*-*- Stanford Research Computing Center -*-*--
+                ____  _               _            _
+               / ___|| |__   ___ _ __| | ___   ___| | __
+               \___ \| &#39;_ \ / _ \ &#39;__| |/ _ \ / __| |/ /
+                ___) | | | |  __/ |  | | (_) | (__|   &lt;
+               |____/|_| |_|\___|_|  |_|\___/ \___|_|\_\ 2.0
+
+-----------------------------------------------------------------------------
+  This system is for authorized users only and you are expected to comply
+  with all Stanford computing, network and research policies.
+  For more info, see https://acomp.stanford.edu/about/policy and
+  https://doresearch.stanford.edu/policies/research-policy-handbook
+-----------------------------------------------------------------------------
+  This system is *NOT* HIPAA compliant and shouldn&#39;t be used to process PHI
+  See https://privacy.stanford.edu/faqs/hipaa-faqs for more information.
+-----------------------------------------------------------------------------
+
+  Support           email: srcc-support@stanford.edu
+  ========   office hours: Tuesdays 10-11am, Thursdays 3-4pm,
+                           room 255 @ Polya Hall
+
+  Web                 www: https://www.sherlock.stanford.edu
+  ========           news: https://news.sherlock.stanford.edu
+                   status: https://status.sherlock.stanford.edu
+
+-----------------------------------------------------------------------------
+</pre></div>
+
+<p>Once authenticated to Sherlock, you'll see the following prompt:</p>
+<!-- manual coloring -->
+
+<pre style="padding: 10.5px 12px">
+[<font color=lawngreen>&lt;sunetid&gt;</font>@sh-ln01 <font color=red>login!</font> ~]$
+</pre>
+
+<p>It indicates the name of the login node you've been connected to, and a
+reminder that you're actually connected to a <a href="/docs/overview/glossary/#login-nodes">login node</a>, not a
+compute node.</p>
+<div class="admonition danger">
+<p class="admonition-title">Login nodes are not for computing</p>
+<p>Login nodes are shared among many users and therefore must not be used to
+run computationally intensive tasks. Those should be submitted to the
+scheduler which will dispatch them on compute nodes.</p>
+</div>
+<p>By contrast, the shell prompt on a login node looks like this:</p>
+<!-- manual coloring -->
+
+<pre style="padding: 10.5px 12px">
+[<font color=lawngreen>&lt;sunetid&gt;</font>@sh-101-01 ~]$
+</pre>
+
+<h2 id="start-computing">Start computing<a class="headerlink" href="#start-computing" title="Permanent link">#</a></h2>
+<p>To start computing, there's still a extra step required, which is requesting
+resources to run your application. It's all described in the <a href="/docs/getting-started/submitting">next
+section</a>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:krb_legacy">
+<p>On Sherlock 1.0, GSSAPI tokens (based on Kerberos tickets)
+were the only allowed authentication method, which could cause some
+interoperability with third-party SSH clients.&#160;<a class="footnote-backref" href="#fnref:krb_legacy" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:auth_methods">
+<p>For other methods of authentication, see the <a href="/docs/advanced-topics/connection#authentication-methods">Advanced
+ Connection Options</a> page.&#160;<a class="footnote-backref" href="#fnref:auth_methods" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../prerequisites/" title="Prerequisites" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Prerequisites
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../submitting/" title="Submitting jobs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Submitting jobs
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../.."></script>
+      
+        <script src="../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1482 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/software/using/mariadb/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>MariaDB - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduction" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                MariaDB
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/connecting/" title="Connecting" class="md-nav__link">
+      Connecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/ondemand/" title="OnDemand" class="md-nav__link">
+      OnDemand
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/filesystems/" title="Filesystems" class="md-nav__link">
+      Filesystems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-transfer/" title="Data transfer" class="md-nav__link">
+      Data transfer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6" checked>
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MariaDB
+      </label>
+    
+    <a href="./" title="MariaDB" class="md-nav__link md-nav__link--active">
+      MariaDB
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mariadb-on-sherlock" class="md-nav__link">
+    MariaDB on Sherlock
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-node-access" class="md-nav__link">
+    Single-node access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    Preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-server" class="md-nav__link">
+    Start the server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-queries" class="md-nav__link">
+    Run queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-node-access" class="md-nav__link">
+    Multi-node access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-network-access" class="md-nav__link">
+    Enable network access
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-access" class="md-nav__link">
+    Secure access
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-mariadb-in-a-job" class="md-nav__link">
+    Start MariaDB in a job
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-running-instance" class="md-nav__link">
+    Connect to the running instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-db-instances" class="md-nav__link">
+    Persistent DB instances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../singularity/" title="Singularity" class="md-nav__link">
+      Singularity
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mariadb-on-sherlock" class="md-nav__link">
+    MariaDB on Sherlock
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-node-access" class="md-nav__link">
+    Single-node access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    Preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-server" class="md-nav__link">
+    Start the server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-queries" class="md-nav__link">
+    Run queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-node-access" class="md-nav__link">
+    Multi-node access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-network-access" class="md-nav__link">
+    Enable network access
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-access" class="md-nav__link">
+    Secure access
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-mariadb-in-a-job" class="md-nav__link">
+    Start MariaDB in a job
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-running-instance" class="md-nav__link">
+    Connect to the running instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-db-instances" class="md-nav__link">
+    Persistent DB instances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/software/using/mariadb.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>MariaDB</h1>
+                
+                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p><a href="https://www.mariadb.com/">MariaDB</a> is a community-developed fork of the <a href="https://www.mysql.com/">MySQL</a>
+relational database management system. It is completely compatible with MySQL
+and could be use as a drop-in replacement in the vast majority of cases.</p>
+<h3 id="more-documentation">More documentation<a class="headerlink" href="#more-documentation" title="Permanent link">#</a></h3>
+<p>The following documentation specifically intended for using MariaDB on
+Sherlock. For more complete documentation about MariaDB in general, please see
+the <a href="https://mariadb.com/kb/en/library/documentation/">MariaDB documentation</a>.</p>
+<h2 id="mariadb-on-sherlock">MariaDB on Sherlock<a class="headerlink" href="#mariadb-on-sherlock" title="Permanent link">#</a></h2>
+<p>We don't provide any centralized database service on Sherlock, but we provide a
+centralized installation of MariaDB, and each user is welcome to start their
+own instance of the database server to fit their jobs' needs.</p>
+<p>The overall process to run an instance of MariaDB on Sherlock would look like
+this:</p>
+<ol>
+<li>configure and initialize your environment so you can start a database
+   instance under your user account,</li>
+<li>start the database server,</li>
+<li>run SQL queries from the same node (via a local socket), or from other nodes
+   and/or jobs (via the network).</li>
+</ol>
+<h3 id="single-node-access">Single-node access<a class="headerlink" href="#single-node-access" title="Permanent link">#</a></h3>
+<p>In that example, the database server and client will run within the same job,
+on the same <a href="/docs/overview/glossary/#node">compute node</a>.</p>
+<h4 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">#</a></h4>
+<p>You first need to let MariaDB know where to store its database, where to log
+things, and how to allow connections from clients. The commands below only need
+to be executed once.</p>
+<p>For this, you'll need to create a <code>.my.cnf</code> file in your home directory.
+Assuming you'll want to store your database files in a <code>db/</code> directory in your
+<code>$SCRATCH</code> folder, you can run the following commands:</p>
+<div class="codehilite"><pre><span></span>$ export DB_DIR=$SCRATCH/db
+$ mkdir $DB_DIR
+
+$ cat &lt;&lt; EOF &gt; ~/.my.cnf
+[mysqld]
+datadir=$DB_DIR
+socket=$DB_DIR/mariadb.sock
+user=$USER
+symbolic-links=0
+skip-networking
+
+[mysqld_safe]
+log-error=$DB_DIR/mariadbd.log
+pid-file=$DB_DIR/mariadbd.pid
+
+[mysql]
+socket=$DB_DIR/mariadb.sock
+EOF
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title"><code>.my.cnf</code> doesn't support environment variables</p>
+<p>Please note that if you edit your <code>~/.my.cnf</code> file directly in a file
+editor, without using the <a href="https://en.wikipedia.org/wiki/Here_document">HEREDOC</a> syntax above,
+environment variables such as <code>$DB_DIR</code>, <code>$HOME</code> or <code>$USER</code> won't work: you
+will need to specify absolute paths explicitely, such as
+<code>/scratch/users/kilian/db/mariadbd.log</code>.</p>
+<p>If you use the HEREDOC syntax, you can verify that the resulting <code>.my.cnf</code>
+file does actually contain full paths, and not environment variables
+anymore.</p>
+</div>
+<p>Once you have the <code>.my.cnf</code> file in place, you need to initialize your database
+with some internal data that MariaDB needs. In the same terminal, run the
+following commands:</p>
+<div class="codehilite"><pre><span></span>$ ml system mariadb
+$ $MARIADB_DIR/scripts/mysql_install_db --basedir=$MARIADB_DIR  --datadir=$DB_DIR
+</pre></div>
+
+<h4 id="start-the-server">Start the server<a class="headerlink" href="#start-the-server" title="Permanent link">#</a></h4>
+<p>You can now start the MariaDB server. For this, first get an allocation on a
+compute node, note the hostname of the compute node your job has been
+allocated, load the <code>mariadb</code> module, and then run the <code>mysqld_safe</code> process:</p>
+<div class="codehilite"><pre><span></span>$ srun --pty bash
+$ echo $SLURM_JOB_NODELIST
+sh-01-01
+$ ml system mariadb 
+$ mysqld_safe
+180705 18:14:27 mysqld_safe Logging to &#39;/home/users/kilian/db/mysqld.log&#39;.
+180705 18:14:28 mysqld_safe Starting mysqld daemon with databases from /home/users/kilian/db/
+</pre></div>
+
+<p>The <code>mysqld_safe</code> will be blocking, meaning it will not give the prompt back
+for as long as the MariaDB server runs.</p>
+<p>If it does return on its own, it probably means that something went wrong, and
+you'll find more information about the issue in the <code>$DB_DIR/mysqld.log</code> file
+you defined in <code>~/.my.cnf</code>.</p>
+<h4 id="run-queries">Run queries<a class="headerlink" href="#run-queries" title="Permanent link">#</a></h4>
+<p>You're now ready to run queries against that MariaDB instance, from the same
+node your job is running on.</p>
+<p>From another terminal on Sherlock, connect to your job's compute node (here,
+it's <code>sh-01-01</code>, as shown above), load the <code>mariadb</code> module, and then run the
+<code>mysql</code> command: it will open the MariaDB shell, ready to run your SQL queries:</p>
+<div class="codehilite"><pre><span></span>$ ssh sh-01-01
+$ ml system mariadb
+$ mysql
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.2.11-MariaDB Source distribution
+
+Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others.
+
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+MariaDB [(none)]&gt;
+</pre></div>
+
+<p>Once you're done with your MariaDB instance, you can just terminate your job,
+and all the processes will be terminated automatically.</p>
+<h3 id="multi-node-access">Multi-node access<a class="headerlink" href="#multi-node-access" title="Permanent link">#</a></h3>
+<p>In case you need to run a more persistent instance of MariaDB, you can for
+instance submit a dedicated job to run the server, make it accessible over the
+network, and run queries from other jobs and/or nodes.</p>
+<h4 id="enable-network-access">Enable network access<a class="headerlink" href="#enable-network-access" title="Permanent link">#</a></h4>
+<p>The preparation steps are pretty similar to the <a href="#single-node-access">single-node
+case</a>, except the MariaDB server instance will be accessed
+over the network rather than through a local socket.</p>
+<div class="admonition danger">
+<p class="admonition-title">Network access must be secured</p>
+<p>When running an networked instance of MariaDB, please keep in mind that any
+user on Sherlock will be able to connect to the TCP ports that <code>mysqld</code>
+runs on, and that proper configuration must be done to prevent unauthrozied
+access.</p>
+</div>
+<p>Like in the single-node case, you need to create a <code>~/.my.cnf</code> file, but
+without the <code>skip-networking</code> directive.</p>
+<div class="codehilite"><pre><span></span>$ export DB_DIR=$SCRATCH/db
+$ mkdir $DB_DIR
+
+$ cat &lt;&lt; EOF &gt; ~/.my.cnf
+[mysqld]
+datadir=$DB_DIR
+socket=$DB_DIR/mariadb.sock
+user=$USER
+symbolic-links=0
+
+[mysqld_safe]
+log-error=$DB_DIR/mariadbd.log
+pid-file=$DB_DIR/mariadbd.pid
+
+[mysql]
+socket=$DB_DIR/mariadb.sock
+EOF
+</pre></div>
+
+<p>And then initiate the database:</p>
+<div class="codehilite"><pre><span></span>$ ml system mariadb
+$ $MARIADB_DIR/scripts/mysql_install_db --basedir=$MARIADB_DIR  --datadir=$DB_DIR
+</pre></div>
+
+<h4 id="secure-access">Secure access<a class="headerlink" href="#secure-access" title="Permanent link">#</a></h4>
+<p>We will now set a password for the MariaDB <code>root</code> user to a random string,
+just for the purpose of preventing unauthorized access, since we won't need it for
+anything.</p>
+<p>We will actually create a MariaDB user with all privileges on the databases,
+that will be able to connect to this instance from any node. This user will
+need a real password, though. So please make sure to replace the
+<code>my-secure-password</code> string below by the actual password of your choice.</p>
+<div class="admonition danger">
+<p class="admonition-title">Choose a proper password</p>
+<p>This password will only be used to access this specific instance of
+MariaDB. Note that anybody knowing that password will be allowed to connect
+to your MariaDB instances and modify data in the tables.</p>
+<ul>
+<li>do <strong>NOT</strong> literally use <code>my-secure-password</code></li>
+<li>do <strong>NOT</strong> use your SUNet ID password</li>
+</ul>
+</div>
+<p>Once you've chosen your password, you can start the <code>mysqld</code> process on a
+compute node, like before:</p>
+<div class="codehilite"><pre><span></span>$ srun --pty bash
+$ echo $SLURM_JOB_NODELIST
+sh-01-01
+$ ml system mariadb
+$ mysqld_safe
+</pre></div>
+
+<p>And then, from another terminal, run the following commands to secure access to
+your MariaDB database.</p>
+<div class="codehilite"><pre><span></span>$ ssh sh-01-01
+$ mysql -u root &lt;&lt; EOF
+UPDATE mysql.user SET Password=PASSWORD(RAND()) WHERE User=&#39;root&#39;;
+DELETE FROM mysql.user WHERE User=&#39;root&#39; AND Host NOT IN (&#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;);
+DELETE FROM mysql.user WHERE User=&#39;&#39;;
+DELETE FROM mysql.db WHERE Db=&#39;test&#39; OR Db=&#39;test_%&#39;;
+GRANT ALL PRIVILEGES ON *.* TO &#39;$USER&#39;@&#39;%&#39; IDENTIFIED BY &#39;my-secure-password&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EOF
+</pre></div>
+
+<p>Once you've done that, you're ready to terminate that interactive job, and
+start a dedicated MariaDB server job.</p>
+<h4 id="start-mariadb-in-a-job">Start MariaDB in a job<a class="headerlink" href="#start-mariadb-in-a-job" title="Permanent link">#</a></h4>
+<p>You can use the following <code>mariadb.sbatch</code> job as a template:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --job-name=mariadb</span>
+<span class="c1">#SBATCH --time=8:0:0</span>
+<span class="c1">#SBATCH --dependency=singleton</span>
+
+ml system mariadb
+mysqld_safe
+</pre></div>
+
+<p>and submit it with:</p>
+<div class="codehilite"><pre><span></span>$ sbatch mariadb.sbatch
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Concurrent instances will lead to data corruption</p>
+<p>An important thing to keep in mind is that having multiple instances of a
+MariaDB server running at the same time, using the same database files,
+will certainly lead to catastrophic situations and the corruption of those
+files.</p>
+<p>To prevent this from happening, the <code>--dependency=singleton</code> job submission
+option will make sure that only one instance of that job (based on its name
+and user) will run at any given time.</p>
+</div>
+<h4 id="connect-to-the-running-instance">Connect to the running instance<a class="headerlink" href="#connect-to-the-running-instance" title="Permanent link">#</a></h4>
+<p>Now, from any node on Sherlock, whether from a login node, an interactive job,
+or a batch job, using the <code>mysql</code> CLI or any application binding in any
+language, you should be able to connect to your running MariaDB instance,</p>
+<p>First, identify the node your job is running on with <code>squeue</code>:
+<div class="codehilite"><pre><span></span>$ squeue -u $USER -n mariadb
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          21383445    normal  mariadb   kilian  R       0:07      1 sh-01-02
+</pre></div></p>
+<p>and then, point your MariaDB client to that node:</p>
+<div class="codehilite"><pre><span></span>$ ml system mariadb
+$ mysql -h sh-01-02 -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 15
+Server version: 10.2.11-MariaDB Source distribution
+
+Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others.
+
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+MariaDB [(none)]&gt;
+</pre></div>
+
+<p>That's it! You can now run SQL queries from anywhere on Sherlock to your own
+MariaDB instance.</p>
+<h3 id="persistent-db-instances">Persistent DB instances<a class="headerlink" href="#persistent-db-instances" title="Permanent link">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">SQL data is persistent</p>
+<p>All the data you import in your SQL databases will be persistent across
+jobs. Meaning that you can run a PostgreSQL server job for the day, import
+data in its database, stop the job, and resubmit the same PostgreSQL server
+job the next day: all your data will still be there as long as the location
+you've chosen for your database (the <code>$DB_DIR</code> defined in the
+<a href="#preparation">Preparation</a> steps) is on a persistent <a href="/docs/storage">storage
+location</a>.</p>
+</div>
+<p>If you need database access for more than the maximum runtime of a job, you can
+use the instructions provided to define <a href="/docs/user-guide/running-jobs/#recurring-jobs">self-resubmitting recurring
+jobs</a> and submit long-running database instances.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../spark/" title="Spark" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Spark
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../postgresql/" title="PostgreSQL" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                PostgreSQL
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../.."></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

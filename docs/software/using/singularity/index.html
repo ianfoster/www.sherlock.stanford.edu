@@ -1,0 +1,1538 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/software/using/singularity/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Singularity - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduction" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Singularity
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/connecting/" title="Connecting" class="md-nav__link">
+      Connecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/ondemand/" title="OnDemand" class="md-nav__link">
+      OnDemand
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guide/troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/filesystems/" title="Filesystems" class="md-nav__link">
+      Filesystems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/data-transfer/" title="Data transfer" class="md-nav__link">
+      Data transfer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6" checked>
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mariadb/" title="MariaDB" class="md-nav__link">
+      MariaDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Singularity
+      </label>
+    
+    <a href="./" title="Singularity" class="md-nav__link md-nav__link--active">
+      Singularity
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-docker" class="md-nav__link">
+    Why not Docker?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-singularity" class="md-nav__link">
+    Why Singularity?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singularity-on-sherlock" class="md-nav__link">
+    Singularity on Sherlock
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-containers" class="md-nav__link">
+    Importing containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    Running containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-enabled-containers" class="md-nav__link">
+    GPU-enabled containers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pulling-ngc-images" class="md-nav__link">
+    Pulling NGC images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-ngc-containers" class="md-nav__link">
+    Running NGC containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-your-own-containers" class="md-nav__link">
+    Building your own containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-docker" class="md-nav__link">
+    Why not Docker?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-singularity" class="md-nav__link">
+    Why Singularity?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singularity-on-sherlock" class="md-nav__link">
+    Singularity on Sherlock
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-containers" class="md-nav__link">
+    Importing containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    Running containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-enabled-containers" class="md-nav__link">
+    GPU-enabled containers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pulling-ngc-images" class="md-nav__link">
+    Pulling NGC images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-ngc-containers" class="md-nav__link">
+    Running NGC containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-your-own-containers" class="md-nav__link">
+    Building your own containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/software/using/singularity.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Singularity</h1>
+                
+                <p><a href="https://www.sylabs.io">Singularity</a> is a tool for running
+<a href="https://en.wikipedia.org/wiki/Linux_containers">containers</a> on HPC systems, similar to <a href="https://www.docker.com">Docker</a>.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>Containers are a solution to the problem of how to get software to run reliably
+when moved from one computing environment to another. They also resolve
+installation problems by packaging all the dependencies of an application
+within a self-sustainable image, <em>a.k.a</em> a container.</p>
+<div class="admonition info">
+<p class="admonition-title">What's a container?</p>
+<p>Put simply, a container consists of an entire runtime environment: an
+application, plus all its dependencies, libraries and other binaries, and
+configuration files needed to run it, bundled into one package. By
+containerizing the application platform and its dependencies, differences
+in OS distributions and underlying infrastructure are abstracted away.</p>
+</div>
+<h3 id="why-not-docker">Why not Docker?<a class="headerlink" href="#why-not-docker" title="Permanent link">#</a></h3>
+<p>Docker has long been the reference and the most popular container framework in
+DevOps and Enterprise IT environments, so why not use Docker on Sherlock? Well,
+for a variety of technical reasons, mostly related to security.</p>
+<p>Docker has never been designed nor developed to run in multi-tenants
+environments, and even less on HPC clusters. Specifically:</p>
+<ul>
+<li>Docker requires a daemon running as <code>root</code> on all of the compute nodes,
+    which has serious security implications,</li>
+<li>all authenticated actions (such as <code>login</code>, <code>push</code> ...) are also executed
+    as <code>root</code>, meaning that multiple users can't use those functions on the
+    same node,</li>
+<li>Docker uses cgroups to isolate containers, as does the Slurm scheduler,
+    which uses cgroups to allocate resources to jobs and enforce limits. Those
+    uses are unfortunately conflicting.</li>
+<li>but most importantly, <em>allowing users to run Docker containers will give
+    them</em> <code>root</code> <em>privileges</em> inside that container, which will in turn let them
+    access any of the clusters' filesystems as <code>root</code>. This opens the door to
+    user impersonation, inappropriate file tampering or stealing, and is
+    obviously not something that can be allowed on a shared resource.</li>
+</ul>
+<p>That last point is certainly the single most important reason why we won't use
+Docker on Sherlock.</p>
+<h3 id="why-singularity">Why Singularity?<a class="headerlink" href="#why-singularity" title="Permanent link">#</a></h3>
+<div class="admonition tldr">
+<p class="admonition-title">Singularity is Docker for HPC systems</p>
+<p>Singularity allows <a href="https://www.sylabs.io/guides/latest/user-guide/singularity_and_docker.html">running Docker containers
+natively</a>, and is a perfect replacement for Docker
+on HPC systems such as Sherlock. That means that existing Docker container
+can be directly imported and natively run with SIngularity.</p>
+</div>
+<p>Despite Docker's shortcomings on HPC systems, the appeal of containers for
+scientific computing is undeniable, which is why we provide
+<a href="https://www.sylabs.io">Singularity</a> on Sherlock. Singularity is an alternative
+container framework, especially designed to run scientific applications on HPC
+clusters.</p>
+<p>Singularity provides the same functionalities as Docker, without any of the
+drawbacks listed above. Using a completely different implementation, it doesn't
+require any privilege to run containers, and allow direct interaction with
+existing Docker containers.</p>
+<p>The main motivation to use Singularity over Docker is the fact that it's been
+developed with HPC systems in mind, to solve those specific problems:</p>
+<ul>
+<li>security: a user in the container is the same user as the one running the
+  container, so no privilege escalation possible,</li>
+<li>ease of deployment: no daemon running as root on each node, a container is
+    simply an executable,</li>
+<li>no need to mount filesystems or do bind mappings to access devices,</li>
+<li>ability to run MPI jobs based on containers,</li>
+<li><a href="https://www.sylabs.io/docs">and more</a>...</li>
+</ul>
+<h3 id="more-documentation">More documentation<a class="headerlink" href="#more-documentation" title="Permanent link">#</a></h3>
+<p>The following documentation specifically intended for using Singularity on
+Sherlock. For more complete documentation about building and running containers
+with Singularity, please see the <a href="https://www.sylabs.io/docs">Singularity
+documentation</a>.</p>
+<h2 id="singularity-on-sherlock">Singularity on Sherlock<a class="headerlink" href="#singularity-on-sherlock" title="Permanent link">#</a></h2>
+<p>As <a href="https://news.sherlock.stanford.edu/posts/sherlock-goes-container-native">announced</a> during the <a href="https://sc18.supercomputing.org/">SC'18 Supercomputing
+Conference</a>, Singularity is an integral part of the Sherlock cluster,
+and Singularity commands can be executed natively on any login or compute node,
+without the need to load any additional module.</p>
+<h3 id="importing-containers">Importing containers<a class="headerlink" href="#importing-containers" title="Permanent link">#</a></h3>
+<p>Pre-built containers can be obtained from a variety of sources. For instance:</p>
+<ul>
+<li><a href="https://hub.docker.com">DockerHub</a> contains containers for various software
+    packages, which can be <a href="https://www.sylabs.io/guides/latest/user-guide/singularity_and_docker.html">directly used with
+    Singularity</a>,</li>
+<li><a href="https://singularity-hub.org/">SingularityHub</a> is a registry for scientific
+    linux containers,</li>
+<li>the <a href="https://ngc.nvidia.com/signin/email">NVIDIA GPU Cloud</a> registry for
+    GPU-optimized containers,</li>
+<li>many individual projects contain specific instructions for installation via
+    Docker and/or Singularity, and may provide pre-built images in other
+    locations.</li>
+</ul>
+<p>To illustrate how Singularity can import and run Docker containers, here's an
+example
+how to install and run the <a href="https://openfoam.org/">OpenFOAM CFD solver</a> using
+Singularity. OpenFOAM can be quite difficult to install manually, but
+Singularity makes it very easy.</p>
+<div class="admonition info">
+<p class="admonition-title">Interactive or batch usage</p>
+<p>This example shows how to use Singularity interactively, but Singularity
+containers can be run in batch jobs as well.</p>
+</div>
+<p>The first step is to request an interactive shell, and to load the singularity
+module. Singularity images can be pulled directly from the compute nodes, and
+Singularity uses multiple CPU cores when assembling the image, so requesting
+multiple cores in your job can make the pull operation faster:</p>
+<div class="codehilite"><pre><span></span>$ srun -c 4 --pty bash
+</pre></div>
+
+<p>We recommend storing Singularity images in <code>$GROUP_HOME</code>, as container images
+can take significant space in your <code>$HOME</code> directory.</p>
+<div class="codehilite"><pre><span></span>$ mkdir -p $GROUP_HOME/$USER/simg
+$ cd $GROUP_HOME/$USER/simg
+</pre></div>
+
+<p>Then, the OpenFOAM container could be pulled directly from
+<a href="https://hub.docker.com">DockerHub</a> by Singularity. This can take a moment to complete:</p>
+<div class="codehilite"><pre><span></span>$ singularity pull docker://openfoam/openfoam6-paraview54
+Docker image path: index.docker.io/openfoam/openfoam6-paraview54:latest
+Cache folder set to /scratch/users/kilian/.singularity/docker
+Importing: base Singularity environment
+Exploding layer: sha256:1be7f2b886e89a58e59c4e685fcc5905a26ddef3201f290b96f1eff7d778e122.tar.gz
+[...]
+Building Singularity image...
+Singularity container built: ./openfoam6-paraview54.simg
+Cleaning up...
+Done. Container is at: ./openfoam6-paraview54.simg
+</pre></div>
+
+<h3 id="running-containers">Running containers<a class="headerlink" href="#running-containers" title="Permanent link">#</a></h3>
+<p>Once the image is downloaded, you are ready to run OpenFOAM from the container.
+The <code>singularity shell</code> command can be used to start the container, and run a
+shell within that image:</p>
+<p>By default on Sherlock, all the filesystems that are available on the compute
+node will also be available in the container. If you want to start your shell
+in a specific directory, you can use the <code>--pwd /path/</code> option. For instance,
+we'll create a <code>/tmp/openfoam_test/</code> directory to store our tests results (that
+will be wiped out at the end of the job), and start the container shell there:</p>
+<div class="codehilite"><pre><span></span>$ mkdir /tmp/openfoam_test
+$ singularity shell --pwd /tmp/openfoam_test openfoam6-paraview54.simg
+Singularity: Invoking an interactive shell within container...
+Singularity openfoam6-paraview54.simg:/tmp/openfoam_test&gt;
+</pre></div>
+
+<p>You're now in the container, as denoted by the shell prompt
+(<code>Singularity[...].simg:[path]&gt;</code>), which is different from the prompt displayed on the
+compute node (which usually looks like <code>[login]@[compute_node] [path]$</code>.</p>
+<p>OpenFOAM provides a convenience script that can be sourced to make OpenFOAM
+commands directly accessible and set a few useful environment variables:</p>
+<div class="codehilite"><pre><span></span>&gt; source /opt/openfoam6/etc/bashrc
+</pre></div>
+
+<p>Now, we can run a simple example using OpenFOAM:</p>
+<div class="codehilite"><pre><span></span>&gt; cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
+&gt; cd pitzDaily
+&gt; blockMesh
+[...]
+End
+
+&gt; simpleFoam
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 6-1a0c91b3baa8
+Exec   : simpleFoam
+Date   : Oct 05 2018
+Time   : 23:37:30
+Host   : &quot;sh-06-33.int&quot;
+PID    : 14670
+I/O    : uncollated
+Case   : /tmp/openfoam_test/pitzDaily
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+[...]
+SIMPLE solution converged in 288 iterations
+
+streamLine streamlines write:
+    seeded 10 particles
+    Tracks:10
+    Total samples:11980
+    Writing data to &quot;/tmp/openfoam_test/pitzDaily/postProcessing/sets/streamlines/288&quot;
+End
+
+&gt;
+</pre></div>
+
+<p>When the simulation is done, you can exit the container with:
+<div class="codehilite"><pre><span></span>&gt; exit
+</pre></div></p>
+<p>Because the container can see all the compute node's filesystems, the
+simulation output will be available in <code>/tmp/openfoam_test</code> after you exit the
+container:</p>
+<div class="codehilite"><pre><span></span>$ ls /tmp/openfoam_test/pitzDaily/postProcessing/
+sets
+</pre></div>
+
+<h3 id="gpu-enabled-containers">GPU-enabled containers<a class="headerlink" href="#gpu-enabled-containers" title="Permanent link">#</a></h3>
+<p>Sherlock also supports the use of container images provided by NVIDIA in the
+<a href="https://www.nvidia.com/en-us/gpu-cloud">NVIDIA GPU Cloud (NGC)</a>. This registry provides GPU-accelerated
+containers for the most popular HPC and deep-learning scientific applications.</p>
+<div class="admonition warning">
+<p class="admonition-title">GPU support</p>
+<p>Containers provided on NGC are only supported on Pascal and Volta
+architectures (TITAN Xp, Tesla P40, P100 or V100). For GPUs from the
+previous generations (GTX TITAN Black/X, Tesla K20/K80), things may or may
+not work.</p>
+<p>We recommend making sure to <a href="/docs/user-guide/gpu/#gpu-types">select a supported GPU
+generation</a> by adding the following directive to your batch
+script when submitting a job to run GPU-enabled containers from NGC:
+<div class="codehilite"><pre><span></span>#SBATCH -C &quot;GPU_GEN:PSC|GPU_GEN:VLT&quot;
+</pre></div></p>
+</div>
+<h4 id="pulling-ngc-images">Pulling NGC images<a class="headerlink" href="#pulling-ngc-images" title="Permanent link">#</a></h4>
+<p>As before, we start by requesting an interactive shell with multiple CPU
+cores, loading the Singularity module and moving the directory where we'll save
+those images:</p>
+<div class="codehilite"><pre><span></span>$ srun -c 4 --pty bash
+$ cd $GROUP_HOME/simg
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">A GPU is not required for pulling GPU-enabled containers</p>
+<p>GPU-enabled containers can be pulled on any node, including nodes without a
+GPU. But their execution requires a GPU and thus, they need to be executed
+within a GPU job. See the <a href="/docs/user-guide/gpu#submitting-a-gpu-job">GPU job</a> section for more
+information.</p>
+</div>
+<p>To be able to pull an image from NGC, authentication credentials must be set.
+Users need to register and create an NGC API key, complete details could be
+found in the <a href="https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html">NGC Getting Started Guide</a>.</p>
+<p>You can then set the following environment variable to allow Singularity to
+authenticate with NGC:</p>
+<div class="codehilite"><pre><span></span>$ export SINGULARITY_DOCKER_USERNAME=&#39;$oauthtoken&#39;
+$ export SINGULARITY_DOCKER_PASSWORD=&lt;NVIDIA NGC API key&gt;
+</pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>SINGULARITY_DOCKER_USERNAME</code> environment variable must be set to the
+literal <code>$oauthtoken</code> string, for every user. It should not be replaced by
+anything else. Only the API key is specific to each user.</p>
+</div>
+<p>Once credentials are set in the environment, container images can be pulled
+from the NGC registry normally.</p>
+<p>The general form of the Singularity command used to pull NGC containers is: <code>$
+singularity pull docker://nvcr.io/&lt;registry&gt;/&lt;app:tag&gt;</code></p>
+<p>For example to pull the <a href="https://www.ks.uiuc.edu/Research/namd/">NAMD</a> NGC container tagged with version
+<code>2.12-171025</code> the corresponding command would be:</p>
+<div class="codehilite"><pre><span></span>$ singularity pull docker://nvcr.io/hpc/namd:2.12-171025
+</pre></div>
+
+<p>After this command has finished, we'll have a Singularity image file in the
+current directory, named <code>namd-2.12-171025.simg</code>.</p>
+<h4 id="running-ngc-containers">Running NGC containers<a class="headerlink" href="#running-ngc-containers" title="Permanent link">#</a></h4>
+<p>Instructions about running NGC containers are provided on the NGC website,
+under each application:</p>
+<p><img alt="NAMD on NGC" src="../img/ngc_namd.png" /></p>
+<p>Each application comes with specific running instructions, so we recommend to
+follow the container's particular guidelines before running it with
+Singularity.</p>
+<blockquote>
+<p>Containers that lack Singularity documentation have not been tested with
+Singularity.</p>
+</blockquote>
+<p>Since all NGC containers are optimized for GPU acceleration, they will always
+be executed with the <code>--nv</code> Singularity option, to enable GPU support within
+the container.</p>
+<p>We also need to submit a job requesting a GPU to run GPU-enabled
+containers.  For instance:</p>
+<div class="codehilite"><pre><span></span>$ srun -p gpu -c 4 --gres gpu:1 --pty bash
+</pre></div>
+
+<p>This will start an interactive shell on a GPU node, with 4 CPU cores and 1 GPU.</p>
+<p>The NAMD container that was pulled just before can now be started with the
+following commands. We start by creating a temporary directory to hold the
+execution results, and start the container using this as the current directory:</p>
+<div class="codehilite"><pre><span></span>$ mkdir /tmp/namd_test
+$ singularity shell --nv --pwd /tmp/namd_test $GROUP_HOME/simg/namd-2.12-171025.simg
+Singularity: Invoking an interactive shell within container...
+
+Singularity namd-2.12-171025.simg:/tmp/namd_test&gt;
+</pre></div>
+
+<p>From there, we can run a NAMD test to verify that everything is working as
+expected.</p>
+<div class="codehilite"><pre><span></span>&gt; cp -r /workspace/examples .
+&gt; /opt/namd/namd-multicore +p4 +idlepoll examples/apoa1/apoa1.namd
+Charm++: standalone mode (not using charmrun)
+Charm++&gt; Running in Multicore mode:  4 threads
+Charm++&gt; Using recursive bisection (scheme 3) for topology aware partitions
+Converse/Charm++ Commit ID: v6.8.2
+[...]
+Info: Built with CUDA version 9000
+Did not find +devices i,j,k,... argument, using all
+Pe 1 physical rank 1 will use CUDA device of pe 2
+Pe 3 physical rank 3 will use CUDA device of pe 2
+Pe 0 physical rank 0 will use CUDA device of pe 2
+Pe 2 physical rank 2 binding to CUDA device 0 on sh-114-13.int: &#39;TITAN Xp&#39;  Mem: 12196MB  Rev: 6.1
+Info: NAMD 2.12 for Linux-x86_64-multicore-CUDA
+[...]
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               1
+[...]
+ENERGY:    2000     20247.5090     20325.4554      5719.0088       183.9328        -340639.3103     25366.3986         0.0000         0.0000     46364.9951        -222432.0107       168.6631   -268797.0057   -222054.5175       168.8733          -1129.9509     -1799.6459    921491.4634     -2007.8380     -2007.4145
+
+WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 2000
+WRITING COORDINATES TO OUTPUT FILE AT STEP 2000
+The last position output (seq=-2) takes 0.001 seconds, 559.844 MB of memory in use
+WRITING VELOCITIES TO OUTPUT FILE AT STEP 2000
+The last velocity output (seq=-2) takes 0.001 seconds, 559.844 MB of memory in use
+====================================================
+
+WallClock: 17.593451  CPUTime: 17.497925  Memory: 559.843750 MB
+[Partition 0][Node 0] End of program
+</pre></div>
+
+<p>The simulation should take a few seconds to run. You can verify that it
+correctly executed on a GPU in the output above. When it's done, you can exit
+the container with:
+<div class="codehilite"><pre><span></span>&gt; exit
+</pre></div></p>
+<p>Because the container can see all the compute node's filesystems, the
+simulation output will be available in <code>/tmp/named_test</code> after you exit the
+container:</p>
+<div class="codehilite"><pre><span></span>$ cd /tmp/namd_test/examples/apoa1/
+$ ls apoa1-out*
+apoa1-out.coor  apoa1-out.vel  apoa1-out.xsc
+</pre></div>
+
+<h3 id="building-your-own-containers">Building your own containers<a class="headerlink" href="#building-your-own-containers" title="Permanent link">#</a></h3>
+<p>Building Singularity containers requires <code>root</code> privileges, and as such,
+cannot be done on Sherlock directly.</p>
+<p>If you need to modify existing containers or build your own from scratch, The
+recommended workflow is to prepare and build your containers on your local
+Linux machine (it could either be a workstation, a laptop or a virtual
+machine), transfer the resulting container image to Sherlock, and run it there.</p>
+<p>For complete details about how to build Singularity containers, please refer to
+the <a href="https://www.sylabs.io/guides/2.6/user-guide/build_a_container.html">Singularity documentation</a>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:modules">
+<p>For more information about using modules on Sherlock,
+  please see the <a href="/docs/software/modules">software modules documentation</a>.&#160;<a class="footnote-backref" href="#fnref:modules" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../postgresql/" title="PostgreSQL" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                PostgreSQL
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../../advanced-topics/connection/" title="Connection" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Connection
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../.."></script>
+      
+        <script src="../../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

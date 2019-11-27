@@ -1,0 +1,1804 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/storage/filesystems/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Filesystems - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#home" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Filesystems
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/connecting/" title="Connecting" class="md-nav__link">
+      Connecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/ondemand/" title="OnDemand" class="md-nav__link">
+      OnDemand
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Filesystems
+      </label>
+    
+    <a href="./" title="Filesystems" class="md-nav__link md-nav__link--active">
+      Filesystems
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    $HOME
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group_home" class="md-nav__link">
+    $GROUP_HOME
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_1" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_1" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    $SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_2" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_2" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group_scratch" class="md-nav__link">
+    $GROUP_SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_3" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_3" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy_1" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l_scratch" class="md-nav__link">
+    $L_SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_4" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy_2" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oak" class="md-nav__link">
+    $OAK
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_5" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_4" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data-transfer/" title="Data transfer" class="md-nav__link">
+      Data transfer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/mariadb/" title="MariaDB" class="md-nav__link">
+      MariaDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/singularity/" title="Singularity" class="md-nav__link">
+      Singularity
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    $HOME
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group_home" class="md-nav__link">
+    $GROUP_HOME
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_1" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_1" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    $SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_2" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_2" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group_scratch" class="md-nav__link">
+    $GROUP_SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_3" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_3" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy_1" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l_scratch" class="md-nav__link">
+    $L_SCRATCH
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_4" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiration-policy_2" class="md-nav__link">
+    Expiration policy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oak" class="md-nav__link">
+    $OAK
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-usage_5" class="md-nav__link">
+    Recommended usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-quota-usage_4" class="md-nav__link">
+    Checking quota usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/storage/filesystems.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Filesystems</h1>
+                
+                <p>The following sections describe the characteristics and best uses of each of
+the Sherlock's filesystems.</p>
+<h2 id="home"><code>$HOME</code><a class="headerlink" href="#home" title="Permanent link">#</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$HOME</code> is your home directory. It's the best place to keep your code
+and important data as it provides snapshots and off-site replication. It is
+not meant to host data that will be actively read and written to by compute
+jobs.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Isilon high speed NFS file system</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>15 GB for the whole <code>$HOME</code> directory</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td>yes <em>(cf. <a href="/docs/storage/data-protection/#snapshots">Snapshots</a>) for more info)</em></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td>off-site replication</td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>not purged</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>all login and compute nodes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage">Recommended usage<a class="headerlink" href="#recommended-usage" title="Permanent link">#</a></h3>
+<p><code>$HOME</code> is best suited for personal configuration files, scripts, small
+reference files or datasets, source code and individual software installation</p>
+<p>When you log in, the system automatically sets the current working directory to
+<code>$HOME</code>: it's the location you'll end up when connecting to Sherlock. You can
+store your source code and build your executables there.</p>
+<p>We strongly recommend using <code>$HOME</code> to reference your home directory in
+scripts, rather than its explicit path.</p>
+<h3 id="checking-quota-usage">Checking quota usage<a class="headerlink" href="#checking-quota-usage" title="Permanent link">#</a></h3>
+<p>The <code>sh_quota</code> tool can be used to display quota usage on <code>$HOME</code>
+<div class="codehilite"><pre><span></span>$ sh_quota -f HOME
+</pre></div>
+See the <a href="/docs/storage/#checking-quotas">Checking Quotas</a> section for more details.</p>
+<hr />
+<h2 id="group_home"><code>$GROUP_HOME</code><a class="headerlink" href="#group_home" title="Permanent link">#</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$GROUP_HOME</code> is your group home directory. It's the best place to keep your
+group's shared code, software installations and important data as it
+provides snapshots and off-site replication. It is not meant to host data
+that will be actively read and written to by compute jobs.</p>
+</div>
+<p><code>$HOME</code> and <code>$GROUP_HOME</code> are based on the same physical file system.</p>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Isilon high speed NFS file system</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>1 TB for the whole <code>$GROUP_HOME</code> directory</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td>yes <em>(cf. <a href="/docs/storage/data-protection/#snapshots">Snapshots</a>) for more info)</em></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td>off-site replication</td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>not purged</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>all login and compute nodes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage_1">Recommended usage<a class="headerlink" href="#recommended-usage_1" title="Permanent link">#</a></h3>
+<p><code>$GROUP_HOME</code> is best suited for group shared source code, common software
+installations, shared data sets and scripts.</p>
+<p>We strongly recommend using <code>$GROUP_HOME</code> to reference your group home directory in
+scripts, rather than its explicit path.</p>
+<h3 id="checking-quota-usage_1">Checking quota usage<a class="headerlink" href="#checking-quota-usage_1" title="Permanent link">#</a></h3>
+<p>The <code>sh_quota</code> tool can be used to display quota usage on <code>$GROUP_HOME</code>
+<div class="codehilite"><pre><span></span>$ sh_quota -f GROUP_HOME
+</pre></div>
+See the <a href="/docs/storage/#checking-quotas">Checking Quotas</a> section for more details.</p>
+<hr />
+<h2 id="scratch"><code>$SCRATCH</code><a class="headerlink" href="#scratch" title="Permanent link">#</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$SCRATCH</code> is your personal scratch space. It's the best place to store
+temporary files, such as raw job output, intermediate files, unprocessed
+results, and so on.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Purge policy</p>
+<p><strong>Files are automatically purged from <code>$SCRATCH</code></strong> after an inactivity
+period.</p>
+<p><code>$SCRATCH</code> is not meant to store permanent data, and should only be used
+for data associated with currently running jobs. It's not a target for
+backups, archived data, etc. See the <a href="#expiration_policy">Expiration
+Policy</a> section for details.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Parallel, high-performance Lustre file system</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>20 TB per user (based on file ownership)</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>data not modified in the last 6 months are automatically purged</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>all login and compute nodes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage_2">Recommended usage<a class="headerlink" href="#recommended-usage_2" title="Permanent link">#</a></h3>
+<p><code>$SCRATCH</code> is best suited for large files, such as raw job output, intermediate
+job files, unprocessed simulation results, and so on.  This is the recommended
+location to run jobs from, and to store files that will be read or written to
+during job execution.</p>
+<p>Old files are automatically purged on <code>$SCRATCH</code> so users should avoid storing
+long-term data there.</p>
+<p>Each compute node has a low latency, high-bandwidth Infiniband link to
+<code>$SCRATCH</code>. The aggregate bandwidth of the filesystem is about 75GB/s. So any
+job with high data performance requirements will take advantage from using
+<code>$SCRATCH</code> for I/O.</p>
+<p>We strongly recommend using <code>$SCRATCH</code> to reference your scratch directory in
+scripts, rather than its explicit path.</p>
+<h3 id="checking-quota-usage_2">Checking quota usage<a class="headerlink" href="#checking-quota-usage_2" title="Permanent link">#</a></h3>
+<p>The <code>sh_quota</code> tool can be used to display quota usage on <code>$SCRATCH</code>
+<div class="codehilite"><pre><span></span>$ sh_quota -f SCRATCH
+</pre></div>
+See the <a href="/docs/storage/#checking-quotas">Checking Quotas</a> section for more details.</p>
+<p><strong>NB</strong>: user quotas are based on file ownership, meaning that all files
+belonging to a given user will count towards her user quota, no matter
+where they're located on the file system. That means that if you have files
+in <code>$GROUP_SCRATCH</code>, those will also count toward your user quota.</p>
+<h3 id="expiration-policy">Expiration policy<a class="headerlink" href="#expiration-policy" title="Permanent link">#</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Inactive files are automatically purged</p>
+<p>Files that are <strong>not modified in the last 6 months</strong> will be automatically
+deleted from the filesystem.</p>
+</div>
+<p>To manage available space and maintain optimal performance for all jobs, all
+files on <code>$SCRATCH</code> are subject to automatic purges. Meaning that after a
+period of inactivity, files that are not used anymore will be automatically
+deleted from the filesystem.</p>
+<p>File activity is defined based on the last time a file's contents (the actual
+data in the file) have been modified. Meaning that <strong>files whose contents have
+not been modified in the previous 6 months will be automatically deleted.</strong></p>
+<p>Each time a file's contents are modified, the expiration countdown is reset,
+and the file gets another 6-month of lifetime.</p>
+<div class="admonition important">
+<p class="admonition-title">Metadata changes don't qualify as an update</p>
+<p>Modifying a file's contents is the only way to reset the expiration
+countdown and extend the file's lifetime on the filesystem.</p>
+<p>Metadata modifications such as: reading the file, renaming it, moving it to
+a different directory, changing its permissions or its ownership,
+"touching" it to update its last modification or access times, won't have
+any effect on the purge countdown.</p>
+</div>
+<p>Purges are based on an internal filesystem property that reflects the last date
+a file's data has been modified, and which is unfortunately not readily
+accessible by users.</p>
+<p>Please note that tools like <code>ls</code> will only display the date of the last
+metadata<sup id="fnref:metadata"><a class="footnote-ref" href="#fn:metadata">1</a></sup> modification for a file, which is not necessarily relevant
+to determine a file's eligibility for deletion. For instance, using the <code>touch</code>
+command on a file to update its last modification date will only update the
+metadata, not the data, and as such, will not reset the purge countdown timer.</p>
+<p>Filesystem purges are a continuous process: they don't run at particular times,
+but are carried out in a permanent background fashion. Files are not
+necessarily deleted right away when they become eligible for deletion.  For
+instance, if you create a file on February 1<sup>st</sup> and don't ever modify it
+afterwards, it will be automatically become eligible for deletion on August
+1<sup>st</sup>, and can be deleted anytime after this date.</p>
+<p>Empty directories that would remain after all their files have been purged are
+are not automatically deleted, because user workflows may rely on and require
+specific directory trees to be present. And there's no good way to distinguish
+between a directory created empty intentionally, and a directory emptied by
+automatic purges.</p>
+<hr />
+<h2 id="group_scratch"><code>$GROUP_SCRATCH</code><a class="headerlink" href="#group_scratch" title="Permanent link">#</a></h2>
+<p><code>$SCRATCH</code> and <code>$GROUP_SCRATCH</code> are based on the same physical file system.</p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$GROUP_SCRATCH</code> is your group shared scratch space. It's the best place to
+store temporary files, such as raw job output, intermediate files, or
+unprocessed results that need to be shared among users within a group.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title"><code>$GROUP_SCRATCH</code> is <strong>NOT</strong> a backup target</p>
+<p><code>$GROUP_SCRATCH</code> is not meant to store permanent data, and should only be used
+for data associated with currently running jobs. It's not a target for
+backups, archived data, etc.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Parallel, high-performance Lustre file system</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>30 TB per group (based on file ownership)</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>data not accessed in the last 6 months are automatically purged</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>all login and compute nodes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage_3">Recommended usage<a class="headerlink" href="#recommended-usage_3" title="Permanent link">#</a></h3>
+<p><code>$GROUP_SCRATCH</code> is best suited for large files, such as raw job output,
+intermediate job files, unprocessed simulation results, and so on.  This is
+the recommended location to run jobs from, and to store files that will be read
+or written to during job execution.</p>
+<p>Old files are automatically purged on <code>$GROUP_SCRATCH</code> so users should avoid
+storing long-term data there.</p>
+<p>We strongly recommend using <code>$GROUP_SCRATCH</code> to reference your group scratch
+directory in scripts, rather than its explicit path.</p>
+<h3 id="checking-quota-usage_3">Checking quota usage<a class="headerlink" href="#checking-quota-usage_3" title="Permanent link">#</a></h3>
+<p>The <code>sh_quota</code> tool can be used to display quota usage on <code>$GROUP_SCRATCH</code>
+<div class="codehilite"><pre><span></span>$ sh_quota -f GROUP_SCRATCH
+</pre></div>
+See the <a href="/docs/storage/#checking-quotas">Checking Quotas</a> section for more details.</p>
+<p><strong>NB</strong>: group quotas are based on file ownership, meaning that all files
+belonging to a given group will count towards the group quota, no matter where
+they're located on the file system. That means that all the files that belong
+to each of the group members will count toward the group quota.</p>
+<h3 id="expiration-policy_1">Expiration policy<a class="headerlink" href="#expiration-policy_1" title="Permanent link">#</a></h3>
+<p>As <code>$SCRATCH</code> and <code>$GROUP_SCRATCH</code> are on the same filesystem, the same expiration
+policy applies to both. Please see the <a href="#scratch"><code>$SCRATCH</code></a> section above for
+more details.</p>
+<hr />
+<h2 id="l_scratch"><code>$L_SCRATCH</code><a class="headerlink" href="#l_scratch" title="Permanent link">#</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$L_SCRATCH</code> is <strong>local</strong> to each compute node, and could be used to store
+temporary files for jobs with high IOPS requirements. Files stored in
+<code>$L_SCRATCH</code> are purged at the end of the job.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Local filesystem, specific to each node, based on SSD</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>n/a (usable space limited by the size of the physical storage devices, typically around 150 GB)</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>data immediately purged at the end of the job</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>locally on each node, not shared across nodes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage_4">Recommended usage<a class="headerlink" href="#recommended-usage_4" title="Permanent link">#</a></h3>
+<p><code>$L_SCRATCH</code> is best suited for small temporary files and applications which
+require low latency and high IOPS levels, typically intermediate job files,
+checkpoints, dumps of temporary states, etc.</p>
+<p>Files stored in <code>$L_SCRATCH</code> are local to each node and can't be accessed from
+other nodes, nor from login nodes.</p>
+<p>Please note that an additional, job-specific environment variable,
+<code>$L_SCRATCH_JOB</code>, will be set to a subdirectory of <code>$L_SCRATCH</code> for each job.
+So, if you have two jobs running on the same compute node, <code>$L_SCRATCH</code> will be
+the same and accessible from both jobs, while <code>$L_SCRATCH_JOB</code> will be
+different for each job.</p>
+<p>For instance, if you have jobs <code>98423</code> and <code>98672</code> running on this same
+nodes, the variables will be set as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Job id</th>
+<th><code>$L_SCRATCH</code></th>
+<th><code>L_SCRATCH_JOB</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>98423</code></td>
+<td><code>/lscratch/kilian</code></td>
+<td><code>/lscratch/kilian/98423</code></td>
+</tr>
+<tr>
+<td align="right"><code>98672</code></td>
+<td><code>/lscratch/kilian</code></td>
+<td><code>/lscratch/kilian/98672</code></td>
+</tr>
+</tbody>
+</table>
+<p>We strongly recommend using <code>$L_SCRATCH</code> to reference your local scratch
+directory in scripts, rather than its full path.</p>
+<h3 id="expiration-policy_2">Expiration policy<a class="headerlink" href="#expiration-policy_2" title="Permanent link">#</a></h3>
+<p>All files stored in <code>$L_SCRATCH_JOB</code> are automatically purged at the end of the
+job, whether the job was successful or not. If you need to conserve files that
+were generated in <code>$L_SCRATCH_JOB</code> after the job ends, don't forget to add a
+command at the end of your batch script to copy them to one of the more
+persistent storage locations, such as <code>$HOME</code> or <code>$SCRATCH</code>.</p>
+<p>Data stored in <code>$L_SCRATCH</code> will be purged at the end of a job, only if no
+other job from the same user is still running on the node. Which means that
+data stored in <code>$L_SCRATCH</code> (but in not <code>$L_SCRATCH_JOB</code>) will persist on the
+node until the last job from the user terminates.</p>
+<hr />
+<h2 id="oak"><code>$OAK</code><a class="headerlink" href="#oak" title="Permanent link">#</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p><code>$OAK</code> is SRCC's research data storage offering. It provides an affordable,
+long-term storage option for labs and reserachers, and is ideally suited to
+host large datasets, or curated, post-processed results from job campaigns,
+as well as final results used for publication.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">OAK is opt-in</p>
+<p><code>$OAK</code> is available as an option on Sherlock. Meaning that only members of
+groups which have purchased storage on Oak can access this filesystem.  For
+complete details and characteristics, including pricing, please refer to
+the <a href="https://oak-storage.stanford.edu">Oak Storage Service page</a>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Characteristics</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Parallel, capacitive Lustre filesystem</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>amount purchased <em>(in 10 TB increments)</em></td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Backups</strong></td>
+<td><strong>NO</strong></td>
+</tr>
+<tr>
+<td><strong>Purge policy</strong></td>
+<td>not purged</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>all login and compute nodes <br/><em>(also available through gateways outside of Sherlock)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-usage_5">Recommended usage<a class="headerlink" href="#recommended-usage_5" title="Permanent link">#</a></h3>
+<p><code>$OAK</code> is ideally suited for large shared datasets, archival data and curated,
+post-processed results   from job campaigns, as well as final results used for
+publication.</p>
+<p>Although jobs can directly read and write to <code>$OAK</code> during execution, it is
+recommended to first stage files from <code>$OAK</code> to <code>$SCRATCH</code> at the beginning of
+a series of jobs, and save the desired results back from <code>$SCRATCH</code> to <code>$OAK</code>
+at the end of the job campaign.</p>
+<p>We strongly recommend using <code>$OAK</code> to reference your group home directory in
+scripts, rather than its explicit path.</p>
+<h3 id="checking-quota-usage_4">Checking quota usage<a class="headerlink" href="#checking-quota-usage_4" title="Permanent link">#</a></h3>
+<p>The <code>sh_quota</code> tool can be used to display quota usage on <code>$OAK</code>
+<div class="codehilite"><pre><span></span>$ sh_quota -f OAK
+</pre></div>
+See the <a href="/docs/storage/#checking-quotas">Checking Quotas</a> section for more details.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:metadata">
+<p>Metadata are data such as a file's size, name, path, owner,
+  permissions, etc.&#160;<a class="footnote-backref" href="#fnref:metadata" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../data-sharing/" title="Data sharing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Data sharing
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../.."></script>
+      
+        <script src="../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1553 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/user-guide/ondemand/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>OnDemand - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduction" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                OnDemand
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/connecting/" title="Connecting" class="md-nav__link">
+      Connecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        OnDemand
+      </label>
+    
+    <a href="./" title="OnDemand" class="md-nav__link md-nav__link--active">
+      OnDemand
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting" class="md-nav__link">
+    Connecting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-a-shell" class="md-nav__link">
+    Getting a shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-files" class="md-nav__link">
+    Managing files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-editing-jobs" class="md-nav__link">
+    Creating and editing jobs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-job-script" class="md-nav__link">
+    Creating a new job script
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-a-template" class="md-nav__link">
+    Select a template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-job-script" class="md-nav__link">
+    Edit the job script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-job-options" class="md-nav__link">
+    Edit the job options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-jobs" class="md-nav__link">
+    Submitting jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-jobs" class="md-nav__link">
+    Monitoring jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-applications" class="md-nav__link">
+    Interactive applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    Jupyter Notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstudio" class="md-nav__link">
+    RStudio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorboard" class="md-nav__link">
+    Tensorboard
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/filesystems/" title="Filesystems" class="md-nav__link">
+      Filesystems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/data-transfer/" title="Data transfer" class="md-nav__link">
+      Data transfer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/mariadb/" title="MariaDB" class="md-nav__link">
+      MariaDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/singularity/" title="Singularity" class="md-nav__link">
+      Singularity
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-documentation" class="md-nav__link">
+    More documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting" class="md-nav__link">
+    Connecting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-a-shell" class="md-nav__link">
+    Getting a shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-files" class="md-nav__link">
+    Managing files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-editing-jobs" class="md-nav__link">
+    Creating and editing jobs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-job-script" class="md-nav__link">
+    Creating a new job script
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-a-template" class="md-nav__link">
+    Select a template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-job-script" class="md-nav__link">
+    Edit the job script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-job-options" class="md-nav__link">
+    Edit the job options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-jobs" class="md-nav__link">
+    Submitting jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-jobs" class="md-nav__link">
+    Monitoring jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-applications" class="md-nav__link">
+    Interactive applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    Jupyter Notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstudio" class="md-nav__link">
+    RStudio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorboard" class="md-nav__link">
+    Tensorboard
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/user-guide/ondemand.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>OnDemand</h1>
+                
+                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>The Sherlock OnDemand interface allows you to conduct your research on Sherlock
+through a web browser. You can manage files (create, edit and move them),
+submit and monitor your jobs, see their output, check the status of the job
+queue, run a Jupyter notebook and much more, without logging in to Sherlock the
+traditional way, via a SSH terminal connection.</p>
+<h3 id="more-documentation">More documentation<a class="headerlink" href="#more-documentation" title="Permanent link">#</a></h3>
+<p><div style="float:right">
+<a href="https://openondemand.org"><img alt="ood" src="../img/ood_logo.png" /></a>
+</div>
+<a href="https://openondemand.org">Open OnDemand</a> was created by the <a href="https://www.osc.edu">Ohio Supercomputer
+Center</a>.</p>
+<p>The following documentation is specifically intended for using OnDemand on
+Sherlock. For more complete documentation about OnDemand in general, please see
+the <a href="https://www.osc.edu/resources/online_portals/ondemand">extensive documentation for OnDemand created by OSC</a>,
+including many video tutorials.</p>
+<h2 id="connecting">Connecting<a class="headerlink" href="#connecting" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Connection information</p>
+<p>To connect to Sherlock OnDemand, simply point your browser to
+<strong><a href="https://login.sherlock.stanford.edu">https://login.sherlock.stanford.edu</a></strong></p>
+</div>
+<p>Sherlock OnDemand requires the same level of authentication than connecting to
+Sherlock over SSH. You will be prompted for your SUNet ID and password, and
+will go through the regular two-step authentication process.</p>
+<p>The Sherlock OnDemand <strong>Dashboard</strong> will then open. From there, you can use the
+menus across the top of the page to manage files, get a shell on Sherlock,
+submit jobs or open interactive applications such as Jupyter Notebooks or
+RStudio sessions.</p>
+<p><img alt="ood_dashboard" src="../img/ood_dashboard.png" /></p>
+<p>To end your Sherlock OnDemand session, click on the <a href="url_ood_logout">"Log Out"</a>
+link at the top right of the Dashboard window and close your browser.</p>
+<h2 id="getting-a-shell">Getting a shell<a class="headerlink" href="#getting-a-shell" title="Permanent link">#</a></h2>
+<p>You can get shell access to Sherlock by choosing <strong>Clusters &gt; Sherlock Shell
+Access</strong> from the top menu in the OnDemand <strong>Dashboard</strong>.</p>
+<p>In the window that will open, you'll be logged in to one of Sherlock' login
+nodes, exactly as if you were using SSH to connect. Except you don't need to
+install any SSH client on your local machine, configure <a href="/docs/advanced-topics/connection/#gssapi">Kerberos</a>
+or deal with your SSH client configuration to <a href="/docs/advanced-topics/connection/#avoiding-multiple-duo-prompts">avoid endless two-factor
+prompts</a>. How cool is that?</p>
+<p><img alt="ood_shell" src="../img/ood_shell.png" /></p>
+<h2 id="managing-files">Managing files<a class="headerlink" href="#managing-files" title="Permanent link">#</a></h2>
+<p>To create, edit or move files, click on the <strong>Files</strong> menu from the
+<strong>Dashboard</strong> page. A dropdown menu will appear, listing your most common
+<a href="/docs/storage">storage locations</a> on Sherlock: <code>$HOME</code>, <code>$GROUP_HOME</code>,
+<code>$SCRATCH</code>. <code>$GROUP_SCRATCH</code> and <code>$OAK</code><sup id="fnref:oak_access"><a class="footnote-ref" href="#fn:oak_access">1</a></sup>.</p>
+<p>Choosing one of the file spaces opens the <strong>File Explorer</strong> in a new browser
+tab. The files in the selected directory are listed.</p>
+<div class="admonition note">
+<p class="admonition-title">Left panel will always display <code>$HOME</code></p>
+<p>No matter which directory you are in, your home directory is displayed in a
+panel on the left.</p>
+</div>
+<p>There are two sets of buttons in the File Explorer.</p>
+<ul>
+<li>
+<p>On the top left, just below the name of the current directory:
+  <img alt="fs_btn1" src="../img/file_explorer_btn1.png" />
+  Those buttons allow you to
+  <strong>View</strong>, <strong>Edit</strong>, <strong>Rename</strong>, <strong>Download</strong>, <strong>Copy</strong>, <strong>Paste</strong> (after you
+  have moved to a different directory) or <strong>Delete</strong> a file, or you can toggle
+  the file selection with <strong>(Un)Select All</strong>.</p>
+</li>
+<li>
+<p>At the top of the window, on the right side:
+  <img alt="fs_btn2" src="../img/file_explorer_btn2.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Go To</strong></td>
+<td>Navigate to another directory or file system</td>
+</tr>
+<tr>
+<td><strong>Open in Terminal</strong></td>
+<td>Open a terminal window on Sherlock in a new browser tab</td>
+</tr>
+<tr>
+<td><strong>New File</strong></td>
+<td>Create a new, empty file</td>
+</tr>
+<tr>
+<td><strong>New Dir</strong></td>
+<td>Create a new subdirectory</td>
+</tr>
+<tr>
+<td><strong>Upload</strong></td>
+<td>Copy a file from your local machine to Sherlock</td>
+</tr>
+<tr>
+<td><strong>Show Dotfiles</strong></td>
+<td>Toggle the display of dotfiles (files starting by a <code>.</code>, which are usually hidden)</td>
+</tr>
+<tr>
+<td><strong>Show Owner/Mode</strong></td>
+<td>Toggle the display of owner and permisson settings</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2 id="creating-and-editing-jobs">Creating and editing jobs<a class="headerlink" href="#creating-and-editing-jobs" title="Permanent link">#</a></h2>
+<p>You can create new job scripts, edit existing scripts, and submit them to the
+scheduler throught the Sherlock OnDemand interface.</p>
+<p>From the top menus in the <strong>Dashboard</strong>, choose <strong>Jobs &gt; Job Composer</strong>. A Job
+Composer window will open. There are two tabs at the top: <strong>Jobs</strong> and
+<strong>Templates</strong>.</p>
+<p>In the <strong>Jobs</strong> tab, you'll find a list of the job you've submitted through
+OnDemand. The <strong>Templates</strong> tab will allow you to define your own job
+templates.</p>
+<h3 id="creating-a-new-job-script">Creating a new job script<a class="headerlink" href="#creating-a-new-job-script" title="Permanent link">#</a></h3>
+<p>To create a new job script. you'll need to follow the steps below.</p>
+<h4 id="select-a-template">Select a template<a class="headerlink" href="#select-a-template" title="Permanent link">#</a></h4>
+<p>Go to the <strong>Jobs</strong> tab in the <strong>Jobs Composer</strong> interface. You'll find a
+default template there: "<em>Simple Sequential Job</em>".</p>
+<p>To create a new job script, click the blue <strong>New Job &gt; From Default Template</strong>
+button in the upper left. You'll see a green message at the top of the
+page indicating: "Job was successfully created".</p>
+<p>At the right of the <strong>Jobs</strong> page, you can see the <strong>Job Details</strong>, including
+the location of the script and the script name (by default, <code>main_job.sh</code>).
+Under that, you will see the contents of the job script in a section named
+<strong>Submit Script</strong>.</p>
+<p><img alt="ood_new_job" src="../img/ood_new_job.png" /></p>
+<h4 id="edit-the-job-script">Edit the job script<a class="headerlink" href="#edit-the-job-script" title="Permanent link">#</a></h4>
+<p>You'll need to edit the job script, so it contains the commands and workflow
+that you want to submit to the scheduler.</p>
+<p>If you need more resources than the defaults, you must include options to
+change them in the job script. For more details, see the <a href="url_running_jobs">Running
+jobs</a> section.</p>
+<p>You can edit the script in several ways:
+* click the blue <strong>Edit Files</strong> button at the top of the <strong>Jobs</strong> tab in the
+  Jobs Composer window,
+* in the <strong>Jobs</strong> tab in the <strong>Jobs Composer</strong> window, find the <strong>Submit
+  Script</strong> section at the bottom right. Click the blue <strong>Open Editor</strong> button.</p>
+<p>After you save the file, the editor window remains open, but if you return to
+the <strong>Jobs Composer</strong> window, you will see that the content of  your script has
+changed.</p>
+<h4 id="edit-the-job-options">Edit the job options<a class="headerlink" href="#edit-the-job-options" title="Permanent link">#</a></h4>
+<p>In the <strong>Jobs</strong> tab in the <strong>Jobs Composer</strong> window, click the blue <strong>Job
+Options</strong> button. The options for the selected job such as name, the job script
+to run, and the account it run under are displayed and can be edited. Click
+<strong>Save</strong> or <strong>Cancel</strong> to return to the job listing.</p>
+<h2 id="submitting-jobs">Submitting jobs<a class="headerlink" href="#submitting-jobs" title="Permanent link">#</a></h2>
+<p>To submit a job, select in in the <strong>Jobs</strong> tab in the <strong>Jobs Composer</strong> page.
+Click the green <strong>Submit</strong> button to submit the selected job. A message at the
+top of the window shows whether the job submission was successful or not. If it
+is not, you can edit the job script or options and resubmit. When the job is
+submitted successfully, the status of the job in the <strong>Jobs Composer</strong> window
+will change to <em>Queued</em> or <em>Running</em>. When  the job completes, the status will
+change to <em>Completed</em>.</p>
+<p><img alt="ood_submit_job" src="../img/ood_submit_job.png" /></p>
+<h2 id="monitoring-jobs">Monitoring jobs<a class="headerlink" href="#monitoring-jobs" title="Permanent link">#</a></h2>
+<p>From the <strong>Dashboard</strong> page, The <strong>Jobs &gt; Active Jobs</strong> top-level menu will
+bring you to a live view of Sherlock's scheduler queue. You'll be able to see
+all the jobs currently in queue, including running and pending jobs, as well as
+eome details about individual jobs.</p>
+<p><img alt="ood_my_jobs" src="../img/ood_my_jobs.png" /></p>
+<p>At the bottom of the detailled view, you'll find two button that will bring you
+to the directory where that job's files are located, either in the <strong>File
+Manager</strong> or in a <strong>Shell</strong> session.</p>
+<h2 id="interactive-applications">Interactive applications<a class="headerlink" href="#interactive-applications" title="Permanent link">#</a></h2>
+<p>One of the main features of Sherlock OnDemand is the ability to run
+interactive applications difrectly from the web interface, without leaving your
+web browser.</p>
+<h3 id="jupyter-notebooks">Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permanent link">#</a></h3>
+<p>You can run Jupyter Notebooks (using Python, Julia or other languages) through
+Sherlock OnDemand.</p>
+<div class="admonition warning">
+<p class="admonition-title">Some preliminary setup may be required</p>
+<p>Before running your first Jupyter Notebook with <code>IJulia</code>, you'll need to
+run the following steps (this only need to be done once):</p>
+<div class="codehilite"><pre><span></span>$ ml julia
+$ julia
+julia&gt; using Pkg;
+julia&gt; Pkg.add(&quot;IJulia&quot;)
+</pre></div>
+
+<p>When you see the message that <code>IJulia</code> has been installed, you can end your
+interactive session.</p>
+</div>
+<p>To start a Jupyter session from Sherlock OnDemand:</p>
+<ol>
+<li>
+<p>Select <strong>Interactive Apps &gt; Jupyter Notebook</strong> from the top menu in the
+   <strong>Dashboard</strong> page,</p>
+</li>
+<li>
+<p>In the screen that opens, specify the different parameters for your job
+   (time limit, number of nodes, CPUs, partition to use, etc.). You can also
+   choose to be notified by email when your notebook start.</p>
+</li>
+</ol>
+<p><img alt="ood_jup" src="../img/ood_jup.png" /></p>
+<ol>
+<li>
+<p>Click the blue <strong>Launch</strong> button to start your JupyterHub session. You may
+   have to wait in the queue for resources to become available for you.</p>
+</li>
+<li>
+<p>When your session starts, you can click on the blue <strong>Connect to Jupyter</strong>
+   button to open your Jupyter Notebook. The Dashboard window will display
+   information about your Jupyter session, including the name of the compute
+   node it is running on, when it started, and how much time remains.
+   <img alt="ood_sess" src="../img/ood_sess.png" /></p>
+</li>
+<li>
+<p>In your new Jupyter Notebook tab, you'll see 3 tabs: Files, Running and
+   Clusters.
+   <img alt="ood_jup_notebook" src="../img/ood_jup_notebook.png" /></p>
+</li>
+</ol>
+<p>By default, you are in the <strong>Files</strong> tab, that displays the contents of your
+   <code>$HOME</code> directory on Sherlock. You can navigate through your files there.</p>
+<p>Under the <strong>Running</strong> tab, you will see the list of all the notebooks or
+   terminal sessions that you have currently running.</p>
+<ol>
+<li>
+<p>You can now start a Jupyter Notebook:</p>
+<ol>
+<li>To open an exiting Jupyter Notebook, which is already stored on
+   Sherlock, navigate to its location in the <strong>Files</strong> tab and click on its
+   name. A new window running the notebook will open.</li>
+<li>To create a new Jupyter Notebook, click on the <strong>New</strong> button at the top
+   right of the file listing, and choose the kernel of your choice from the
+   drop down.</li>
+</ol>
+</li>
+</ol>
+<p>To terminate your Jupyter Notebook session, go back to the Dashboard, and click
+on the <strong>My Interactive Sessions</strong> in the top menu. This will bring you to a
+page listing all your currently active interactive session. Identify the one
+you'd like to terminate and click on the red <strong>Delete</strong> button.</p>
+<h3 id="rstudio">RStudio<a class="headerlink" href="#rstudio" title="Permanent link">#</a></h3>
+<p>To run RStudio via Sherlock OnDemand:</p>
+<ol>
+<li>
+<p>Select <strong>Interactive Apps &gt; RStudio Server</strong> from the top menu in the
+   Dashboard page,</p>
+</li>
+<li>
+<p>In the screen that opens, specify the different parameters for your job
+   (time limit, number of nodes, CPUs, partition to use, etc.). You can also
+   choose to be notified by email when your notebook start.</p>
+</li>
+<li>
+<p>Click the blue <strong>Launch</strong> button to start your RStudio session. You may have
+   to wait in the queue for resources to become available.</p>
+</li>
+<li>
+<p>When your session starts, click the blue <strong>Connect to RStudio Server</strong>
+   button. A new window opens with the RStudio interface.</p>
+</li>
+</ol>
+<p><img alt="ood_rstudio" src="../img/ood_rstudio.png" /></p>
+<h3 id="tensorboard">Tensorboard<a class="headerlink" href="#tensorboard" title="Permanent link">#</a></h3>
+<p>To run Tensorboard via Sherlock OnDemand:</p>
+<ol>
+<li>
+<p>Select <strong>Interactive Apps &gt; Tensorboard</strong> from the top menu in the
+   Dashboard page,</p>
+</li>
+<li>
+<p>In the screen that opens, specify the different parameters for your job
+   (time limit, number of nodes, CPUs, partition to use, etc.). You can also
+   choose to be notified by email when your notebook start.</p>
+</li>
+<li>
+<p>Click the blue <strong>Launch</strong> button to start your Tensorboard session. You may have
+   to wait in the queue for resources to become available.</p>
+</li>
+<li>
+<p>When your session starts, click the blue <strong>Connect to Tensorboard</strong>
+   button. A new window opens with the Tensorboard interface.</p>
+</li>
+</ol>
+<p><img alt="ood_tb" src="../img/ood_tb.png" /></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:oak_access">
+<p>if you have access to the <a href="https://oak-storage.stanford.edu">Oak storage system</a>.&#160;<a class="footnote-backref" href="#fnref:oak_access" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../gpu/" title="GPU nodes" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GPU nodes
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../troubleshoot/" title="Troubleshooting" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Troubleshooting
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../.."></script>
+      
+        <script src="../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

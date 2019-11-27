@@ -1,0 +1,1668 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Sherlock Cluster documentation">
+      
+      
+        <link rel="canonical" href="https://www.sherlock.stanford.edu/docs/storage/data-transfer/">
+      
+      
+        <meta name="author" content="Kilian Cavalotti">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\_\-\.]+">
+      
+      <link rel="shortcut icon" href="../../../img/logo_small.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Data transfer - Sherlock</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.c4a2eec3.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../..">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-68034405-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="stanford" data-md-color-accent="stanford">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#transfer-protocols" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-header-nav__button md-logo">
+          
+            <img src="../../../img/logo_small.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Sherlock
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Data transfer
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.sherlock.stanford.edu/" title="Sherlock" class="md-nav__button md-logo">
+      
+        <img src="../../../img/logo_small.png" width="48" height="48">
+      
+    </a>
+    Sherlock
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/stanford-rc/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    SRCC <i class="fa fa-heart-o"></i> Open Source
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/specs/" title="Tech specs" class="md-nav__link">
+      Tech specs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/connecting/" title="Connecting" class="md-nav__link">
+      Connecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/submitting/" title="Submitting jobs" class="md-nav__link">
+      Submitting jobs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      User guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        User guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/running-jobs/" title="Running jobs" class="md-nav__link">
+      Running jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Specialized resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Specialized resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/gpu/" title="GPU nodes" class="md-nav__link">
+      GPU nodes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/ondemand/" title="OnDemand" class="md-nav__link">
+      OnDemand
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/troubleshoot/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../filesystems/" title="Filesystems" class="md-nav__link">
+      Filesystems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data-sharing/" title="Data sharing" class="md-nav__link">
+      Data sharing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data-protection/" title="Data protection" class="md-nav__link">
+      Data protection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Data transfer
+      </label>
+    
+    <a href="./" title="Data transfer" class="md-nav__link md-nav__link--active">
+      Data transfer
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transfer-protocols" class="md-nav__link">
+    Transfer protocols
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-keys" class="md-nav__link">
+    Host keys
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys-warning" class="md-nav__link">
+    Host keys warning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-based-protocols" class="md-nav__link">
+    SSH-based protocols
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scp-secure-copy" class="md-nav__link">
+    SCP (Secure Copy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftp-secure-file-transfer-protocol" class="md-nav__link">
+    SFTP (Secure File Transfer Protocol)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    rsync
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sshfs" class="md-nav__link">
+    SSHFS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    Globus
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfer" class="md-nav__link">
+    Transfer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-transfer-nodes-dtns" class="md-nav__link">
+    Data Transfer Nodes (DTNs)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-storage" class="md-nav__link">
+    Cloud storage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-drive" class="md-nav__link">
+    Google Drive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-services" class="md-nav__link">
+    Other services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Software
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/list/" title="List" class="md-nav__link">
+      List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/containers/" title="Containers" class="md-nav__link">
+      Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/R/" title="R" class="md-nav__link">
+      R
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/julia/" title="Julia" class="md-nav__link">
+      Julia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/perl/" title="Perl" class="md-nav__link">
+      Perl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/mariadb/" title="MariaDB" class="md-nav__link">
+      MariaDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/postgresql/" title="PostgreSQL" class="md-nav__link">
+      PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/using/singularity/" title="Singularity" class="md-nav__link">
+      Singularity
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Advanced topics
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Advanced topics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced-topics/connection/" title="Connection" class="md-nav__link">
+      Connection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transfer-protocols" class="md-nav__link">
+    Transfer protocols
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-keys" class="md-nav__link">
+    Host keys
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-keys-warning" class="md-nav__link">
+    Host keys warning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-based-protocols" class="md-nav__link">
+    SSH-based protocols
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scp-secure-copy" class="md-nav__link">
+    SCP (Secure Copy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftp-secure-file-transfer-protocol" class="md-nav__link">
+    SFTP (Secure File Transfer Protocol)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    rsync
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sshfs" class="md-nav__link">
+    SSHFS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    Globus
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfer" class="md-nav__link">
+    Transfer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-transfer-nodes-dtns" class="md-nav__link">
+    Data Transfer Nodes (DTNs)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-storage" class="md-nav__link">
+    Cloud storage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-drive" class="md-nav__link">
+    Google Drive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-services" class="md-nav__link">
+    Other services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stanford-rc/www.sherlock.stanford.edu/edit/docs/src/docs/storage/data-transfer.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Data transfer</h1>
+                
+                <h2 id="transfer-protocols">Transfer protocols<a class="headerlink" href="#transfer-protocols" title="Permanent link">#</a></h2>
+<p>A number of methods allow transferring data in/out of Sherlock. For most cases,
+we recommend using <a href="#ssh-based protocols">SSH-based file transfer commands</a>,
+such as <code>scp</code>, <code>sftp</code>, or <code>rsync</code>.  They will provide the best
+performance for data transfers from and to campus.</p>
+<p>Most casual data transfers could be done through the login nodes, by pointing
+your transfer tool to <code>login.sherlock.stanford.edu</code>. But because of resource
+limits on the login nodes, larger transfer may not work as expected.</p>
+<p>For transferring large amounts of data, Sherlock features a specific <a href="#dtn">Data
+Transfer Node</a>, with dedicated bandwidth, as well as a managed <a href="#globus">Globus
+Online endpoint</a>, that can be used for scheduled, unattended data
+transfers.</p>
+<p>We also provide tools on Sherlock to transfer data to various <a href="#cloud-backups">Cloud
+providers</a>, such as AWS, Google Drive, Dropbox, Box, etc.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">#</a></h3>
+<p>Most of the commands detailed below require a terminal and an SSH client<sup id="fnref:ssh"><a class="footnote-ref" href="#fn:ssh">1</a></sup>
+on your local machine to launch commands.</p>
+<p>You'll need to start a terminal and type the given example commands at the
+prompt, omitting the initial <code>$</code> character (it just indicates a command prompt,
+and then should not be typed in).</p>
+<h3 id="host-keys">Host keys<a class="headerlink" href="#host-keys" title="Permanent link">#</a></h3>
+<p>Upon your very first connection to Sherlock, you will be greeted by a warning
+such as :</p>
+<div class="codehilite"><pre><span></span>The authenticity of host &#39;login.sherlock.stanford.edu&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+
+
+<p>The same warning will be displayed if your try to connect to one of the <a href="/docs/storage/data-transfer/#data-transfer-node-dtn">Data
+Transfer Node (DTN)</a>:</p>
+<div class="codehilite"><pre><span></span>The authenticity of host &#39;dtn.sherlock.stanford.edu&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+
+
+<p>This warning is normal: your SSH client warns you that it is the first time it
+sees that new computer. To make sure you are actually connecting to the right
+machine, you should compare the ECDSA key fingerprint shown in the message with
+one of the fingerprints below:</p>
+<table>
+<thead>
+<tr>
+<th>Key type</th>
+<th>Key Fingerprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RSA</td>
+<td><code>SHA256:T1q1Tbq8k5XBD5PIxvlCfTxNMi1ORWwKNRPeZPXUfJA</code><br/><small>legacy format: <code>f5:8f:01:46:d1:f9:66:5d:33:58:b4:82:d8:4a:34:41</code></small></td>
+</tr>
+<tr>
+<td>ECDSA</td>
+<td><code>SHA256:eB0bODKdaCWtPgv0pYozsdC5ckfcBFVOxeMwrNKdkmg</code><br/><small>legacy format: <code>70:4c:76:ea:ae:b2:0f:81:4b:9c:c6:5a:52:4c:7f:64</code></small></td>
+</tr>
+</tbody>
+</table>
+<p>If they match, you can proceed and type ‘yes’. Your SSH program will then store
+that key and will verify it for every subsequent SSH connection, to make sure
+that the server you're connecting to is indeed Sherlock.</p>
+<h4 id="host-keys-warning">Host keys warning<a class="headerlink" href="#host-keys-warning" title="Permanent link">#</a></h4>
+<p>If you've connected to Sherlock 1.0 before, there's a good chance the
+Sherlock 1.0 keys were stored by your local SSH client. In that case, when
+connecting to Sherlock 2.0 using the <code>sherlock.stanford.edu</code> alias, you
+will be presented with the following message:</p>
+<div class="codehilite"><pre><span></span>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: POSSIBLE DNS SPOOFING DETECTED! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+The RSA host key for sherlock.stanford.edu has changed, and the key for
+the corresponding IP address 171.66.97.101 is unknown. This could
+either mean that DNS SPOOFING is happening or the IP address for the
+host and its host key have changed at the same time.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle
+attack)!  It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:T1q1Tbq8k5XBD5PIxvlCfTxNMi1ORWwKNRPeZPXUfJA.
+Please contact your system administrator.
+</pre></div>
+
+
+<p>You can just check that the SHA256 key listed in that warning message
+correctly matches the one listed in the table above, and if that's the
+case, you can safely remove the <code>sherlock.stanford.edu</code> entry from your
+<code>~/.ssh/known_hosts</code> file with the following command on your local machine:</p>
+<div class="codehilite"><pre><span></span>$ ssh-keygen -R sherlock.stanford.edu
+</pre></div>
+
+
+<p>and then connect again. You'll see the first-connection prompt <a href="#host-keys">mentioned
+above</a>, and your SSH client will store the new keys for future
+connections.</p>
+<h3 id="ssh-based-protocols">SSH-based protocols<a class="headerlink" href="#ssh-based-protocols" title="Permanent link">#</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Login name</p>
+<p>In all the examples below, you'll need to replace <code>&lt;sunetid&gt;</code> by your
+actual SUNet ID. If you happen to use the same login name on your local
+machine, you can omit it..</p>
+</div>
+<h4 id="scp-secure-copy">SCP (Secure Copy)<a class="headerlink" href="#scp-secure-copy" title="Permanent link">#</a></h4>
+<dl>
+<dd>
+<p>The easiest command to use to transfer files to/from Sherlock is <code>scp</code>. It
+works like the <code>cp</code> command, except it can work over the network to copy
+files from one computer to another, using the secure SSH protocol.</p>
+<p>The general syntax to copy a file to a remote server is:
+<div class="codehilite"><pre><span></span>$ scp &lt;source_file_path&gt; &lt;username&gt;@&lt;remote_host&gt;:&lt;destination_path&gt;&#39;
+</pre></div></p>
+<p>For instance, the following command will copy the file named <code>foo</code> from
+your local machine to your home directory on Sherlock:
+<div class="codehilite"><pre><span></span>$ scp foo &lt;sunetid&gt;@login.sherlock.stanford.edu:
+</pre></div>
+Note the <code>:</code> character, that separates the hostname from the destination
+path. Here, the destination path is empty, which will instruct scp to copy
+the file in your home directory.</p>
+<p>You can copy <code>foo</code> under a different name, or to another directory, with
+the following commands:
+<div class="codehilite"><pre><span></span>$ scp foo &lt;sunetid&gt;@login.sherlock.stanford.edu:bar
+$ scp foo &lt;sunetid&gt;@login.sherlock.stanford.edu:~/subdir/baz
+</pre></div></p>
+<p>To copy back files from Sherlock to your local machine, you just need to
+reverse the order of the arguments:
+<div class="codehilite"><pre><span></span>$ scp &lt;sunetid&gt;@login.sherlock.stanford.edu:foo local_foo
+</pre></div></p>
+<p>And finally, <code>scp</code> also support recursive copying of directories, with the
+<code>-r</code> option:
+<div class="codehilite"><pre><span></span>$ scp -r dir/ &lt;sunetid&gt;@login.sherlock.stanford.edu:dir/
+</pre></div>
+This will copy the <code>dir/</code> directory and all of its contents in your home
+directory on Sherlock.</p>
+</dd>
+</dl>
+<h4 id="sftp-secure-file-transfer-protocol">SFTP (Secure File Transfer Protocol)<a class="headerlink" href="#sftp-secure-file-transfer-protocol" title="Permanent link">#</a></h4>
+<dl>
+<dd>
+<p>SFTP clients are interactive file transfer programs, similar to FTP, which
+perform all operations over an encrypted transport.</p>
+<p>A variety of graphical SFTP clients are available for different OSes:</p>
+<ul>
+<li><a href="https://winscp.net/eng/docs/introduction">WinSCP</a> <i class="fa fa-windows"></i></li>
+<li><a href="https://uit.stanford.edu/software/scrt_sfx">SecureFX</a> <i class="fa fa-windows"></i>,</li>
+<li><a href="http://fetchsoftworks.com/">Fetch</a><sup id="fnref:fetch_su"><a class="footnote-ref" href="#fn:fetch_su">2</a></sup> <i class="fa fa-apple"></i></li>
+<li><a href="http://cyberduck.io/">CyberDuck</a> <i class="fa fa-apple"></i></li>
+</ul>
+<p>When setting up your connection to Sherlock in the above programs, use the
+following information:</p>
+<div class="codehilite"><pre><span></span>Hostname: login.sherlock.stanford.edu
+Port:     22
+Username: SUNet ID
+Password: SUNet ID password
+</pre></div>
+
+
+<p>OpenSSH also provides a command-line SFTP client, originally named <code>sftp</code>.</p>
+<p>To log in to Sherlock:
+<div class="codehilite"><pre><span></span>$ sftp &lt;sunetid&gt;@login.sherlock.stanford.edu
+Connected to login.sherlock.stanford.edu.
+sftp&gt;
+</pre></div>
+For more information about using the command-line SFTP client, you can
+refer to this <a href="https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server">tutorial</a> for more details and examples.</p>
+</dd>
+</dl>
+<h4 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">#</a></h4>
+<dl>
+<dd>
+<p>If you have complex hierarchies of files to transfer, or if you need to
+synchronize a set of files and directories between your local machine and
+Sherlock, <code>rsync</code> will be the best tool for the job. It will efficiently
+transfer and synchronize files across systems, by checking the timestamp
+and size of files. Which means that it won't re-transfer files that have
+not changed since the last transfer, and will complete faster.</p>
+<p>For instance, to transfer the whole <code>~/data/</code> folder tree from your local
+machine to your home directory on Sherlock, you can use the following
+command:
+<div class="codehilite"><pre><span></span>$ rsync -a ~/data/ &lt;sunetid&gt;@login.sherlock.stanford.edu:data/
+</pre></div>
+Note the slash (<code>/</code>) at the end of the directories name,  which is
+important to instruct <code>rsync</code> to synchronize the whole directories.</p>
+<p>To get more information about the transfer rate and follow its progress,
+you can use additional options:
+<div class="codehilite"><pre><span></span>$ rsync -avP ~/data/ &lt;sunetid&gt;@login.sherlock.stanford.edu:data/
+sending incremental file list
+./
+file1
+      1,755,049 100%    2.01MB/s    0:00:00 (xfr#2, to-chk=226/240)
+file2
+      2,543,699 100%    2.48MB/s    0:00:00 (xfr#3, to-chk=225/240)
+file3
+     34,930,688  19%   72.62MB/s    0:00:08
+
+[...]
+</pre></div>
+For more information about using the <code>rsync</code>, you can
+refer to this <a href="https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps">tutorial</a> for more details and examples.</p>
+</dd>
+</dl>
+<h4 id="sshfs">SSHFS<a class="headerlink" href="#sshfs" title="Permanent link">#</a></h4>
+<dl>
+<dd>
+<p>Sometimes, moving files in and out of the cluster, and maintaining two
+copies of each of the files you work on, both on your local machine and on
+Sherlock, may be painful. Fortunately, Sherlock offers the ability to mount
+any of its filesystems to your local machine, using a secure and encrypted
+connection.</p>
+<p>With SSHFS, a FUSE-based filesystem implementation used to mount remote
+SSH-accessible filesystems, you can access your files on Sherlock as if
+they were locally stored on your own computer.</p>
+<p>This comes particularly handy when you need to access those files from an
+application that is not available on Sherlock, but that you already use or
+can install on your local machine. Like a data processing program that you
+have licensed for your own computer but can't use on Sherlock, a specific
+text editor that only runs on MacOS, or any data-intensive 3D rendering
+software that wouldn't work comfortably enough over a forwarded X11
+connection.</p>
+<p>SSHFS is available for <a href="http://fuse.sourceforge.net/sshfs.html">Linux</a> <i class="fa fa-linux"></i>,
+<a href="https://osxfuse.github.io/">MacOS</a> <i class="fa fa-apple"></i>, and <a href="https://github.com/billziss-gh/sshfs-win">Windows</a>
+<i class="fa fa-windows"></i>.</p>
+<div class="admonition warning">
+<p class="admonition-title">SSHFS on macOS</p>
+<p>SSHFS on macOS is known to try to automatically reconnect filesystem
+mounts after resuming from sleep or suspend, even without any valid
+credentials.  As a result, it will generate a lot of failed connection
+attempts and likely make your <a href="/docs/getting-started/connecting/#authentication-failures">IP address blacklisted</a>
+on login nodes.</p>
+<p>Make sure to unmount your SSHFS drives before putting your macOS system
+to sleep to avoid this situation.</p>
+</div>
+<p>For instance, on a Linux machine with SSHFS installed, you could mount your
+Sherlock home directory with the following commands:</p>
+<div class="codehilite"><pre><span></span>$ mkdir ~/sherlock_home
+$ sshfs &lt;sunetid&gt;@login.sherlock.stanford.edu:./ ~/sherlock_home
+</pre></div>
+
+<p>And to unmount it:
+<div class="codehilite"><pre><span></span>$ fusermount -u ~/sherlock_home
+</pre></div></p>
+<p>For more information about using SSHFS on your local machine, you can
+refer to this <a href="https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh">tutorial</a> for more details and examples.</p>
+</dd>
+</dl>
+<h3 id="globus">Globus<a class="headerlink" href="#globus" title="Permanent link">#</a></h3>
+<p>Globus improves SSH-based file transfer protocols by providing the following
+features:</p>
+<ul>
+<li>automates large data transfers,</li>
+<li>can resume failed transfers,</li>
+<li>simplifies the implementation of high-performance transfers between computing
+  centers.</li>
+</ul>
+<p>Globus Online is a Software as a Service (SaaS) deployment of the Globus
+Toolkit which provides end-users with a browser interface to initiate data
+transfers between endpoints registered with the Globus Alliance. Globus Online
+allows registered users to "drag and drop" files from one endpoint to another.
+Endpoints are terminals for data; they can be laptops or supercomputers, and
+anything in between. The servers at Globus.org act as
+intermediaries-negotiating, monitoring and optimizing transfers through
+firewalls and across network address translation (NAT). Under certain
+circumstances with high performance hardware transfer rates exceeding 1 GB/s
+are possible. For more information about Globus, please see the <a href="https://www.globus.org/how-it-works">Globus.org's
+documentation</a>.</p>
+<h4 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">#</a></h4>
+<p>To use Globus Online, you will first need to authenticate at
+<a href="https://www.globus.org">Globus.org</a>. You can either sign up for a Globus.org account, or
+use your SUNet ID account for authentication to Globus Online (which will be
+required to authenticate to the Sherlock endpoint).</p>
+<p>To use your SUNet ID, choose "Stanford University" from the drop down menu at
+the <a href="https://app.globus.org/">Login page</a> and follow the instructions from there.</p>
+<h4 id="transfer">Transfer<a class="headerlink" href="#transfer" title="Permanent link">#</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Endpoint name</p>
+<p>The Globus endpoint name for Sherlock is <code>SRCC Sherlock</code> (aka
+<code>srcc#sherlock</code>)</p>
+</div>
+<p>You can use Globus Online to transfer data between your local workstation
+(e.g., your laptop or desktop) and Sherlock. In this workflow, you
+configure your local workstation as a Globus endpoint using Globus Connect.</p>
+<ol>
+<li>Log in to <a href="https://app.globus.org/">Globus.org</a></li>
+<li>Use the <a href="https://www.globus.org/app/endpoints">Manage Endpoints</a> interface to "add Globus
+   Connect Personal" as an endpoint (you'll need to install Globus Connect
+   Personal on your local machine)</li>
+<li><a href="https://www.globus.org/app/transfer">Transfer Files</a>, using your new workstation endpoint
+   for one side of the transfer, and the Sherlock endpoint (<code>SRCC Sherlock</code>) on
+   the other side.</li>
+</ol>
+<p>You can also transfer data between two remote endpoints, by choosing another
+endpoint you have access to instead of your local machine.</p>
+<h4 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">#</a></h4>
+<p>Globus also provides a command-line interface as an alternative to its web
+interface. This command-line interface is provided over an SSH connection to a
+Globus.org server. Please see the <a href="https://docs.globus.org/faq/command-line-interface/">Globus CLI documentation</a> for
+more details.</p>
+<h2 id="data-transfer-nodes-dtns">Data Transfer Nodes (DTNs)<a class="headerlink" href="#data-transfer-nodes-dtns" title="Permanent link">#</a></h2>
+<p>A pool of dedicated Data Transfer Nodes is available on Sherlock, to provide
+exclusive resources for large-scale data transfers.</p>
+<p>The main benefit of using it is that transfer tasks can't be disrupted by other
+users interactive tasks or filesystem access and I/O-related workloads on the
+login nodes.</p>
+<p>By using the Sherlock DTNs, you'll make sure that your data flows will go
+through a computer whose sole purpose is to move data around.</p>
+<p>It supports:</p>
+<ul>
+<li>SSH-based protocols (such as the ones <a href="#ssh-based-protocols">described
+  above</a>)</li>
+<li><a href="https://www.slac.stanford.edu/~abh/bbcp">BBCP</a></li>
+<li><a href="#globus">Globus</a></li>
+</ul>
+<p>To transfer files via the DTNs, simply use <code>dtn.sherlock.stanford.edu</code> as a
+remote server hostname. For instance:</p>
+<div class="codehilite"><pre><span></span>$ scp foo &lt;sunetid&gt;@dtn.sherlock.stanford.edu:~/foo
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">No shell</p>
+<p>The DTNs don't provide any interactive shell, so connecting via SSH
+directly won't work. It will only accept <code>scp</code>, <code>sftp</code>, <code>rsync</code> of <code>bbcp</code>
+connections.</p>
+</div>
+<p>One important difference to keep in mind when transferring files through the
+Sherlock DTNs is that the default destination path for files, unless specified,
+is the user <code>$SCRATCH</code> directory, not <code>$HOME</code>.</p>
+<p>That means that the following command:
+<div class="codehilite"><pre><span></span>$ scp foo &lt;sunetid&gt;@dtn.sherlock.stanford.edu:
+</pre></div>
+will create the <code>foo</code> file in  <code>$SCRATCH/foo</code>, and not in <code>$HOME/foo</code>.</p>
+<p>You can transfer file to your <code>$HOME</code> directory via the DTNs by specifying the
+full path as the destination:
+<div class="codehilite"><pre><span></span>$ scp foo &lt;sunetid&gt;@dtn.sherlock.stanford.edu:$HOME/foo
+</pre></div></p>
+<h2 id="cloud-storage">Cloud storage<a class="headerlink" href="#cloud-storage" title="Permanent link">#</a></h2>
+<p>If you need to backup some of your Sherlock files to cloud-based storage
+services, we also provide a set of utilities that can help.</p>
+<h3 id="google-drive">Google Drive<a class="headerlink" href="#google-drive" title="Permanent link">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Google Drive storage for Stanford users</p>
+<p>Google Drive is free for educational institutions. Meaning you can get
+<strong>free</strong> and <strong>unlimited</strong> storage on Google Drive using your @stanford.edu
+account. See the <a href="https://uit.stanford.edu/service/googleapps/drive">University IT Google Drive page</a> for more
+details.</p>
+</div>
+<p>We provide the <code>gdrive</code> tool on Sherlock to interact with Google Drive. You'll
+just need to load the <code>gdrive</code> module to be able to use it to move your
+files from/to Google Drive:</p>
+<div class="codehilite"><pre><span></span>$ module load system gdrive
+$ gdrive help
+</pre></div>
+
+<p>For more details about how to use <code>gdrive</code>, please see the <a href="https://github.com/prasmussen/gdrive">official
+documentation</a>.</p>
+<h3 id="other-services">Other services<a class="headerlink" href="#other-services" title="Permanent link">#</a></h3>
+<p>If you need to access other cloud storage services, you can use
+<a href="https://rclone.org/">rclone</a>: it can be used to sync files and directories to and from
+Google Drive, Amazon S3, Box, Dropbox, Google Cloud Storage, Amazon Drive,
+Microsoft OneDrive and many more.</p>
+<div class="codehilite"><pre><span></span>$ ml load system rclone
+$ rclone -h
+</pre></div>
+
+<p>For more details about how to use <code>rclone</code>, please see the <a href="https://rclone.org/">official
+documentation</a>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:ssh">
+<p>For more details, see the <a href="/docs/getting-started/prerequisites/#ssh-clients">SSH clients page</a>.&#160;<a class="footnote-backref" href="#fnref:ssh" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:fetch_su">
+<p>Fetch is a commercial program, and is available as part of
+  the <a href="https://uit.stanford.edu/software/fetch">Essential Stanford Software</a> bundle.&#160;<a class="footnote-backref" href="#fnref:fetch_su" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../data-protection/" title="Data protection" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Data protection
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../software/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Overview
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2014 - 2018 &mdash; <a href='mailto:srcc-support@stanford.edu'>Stanford Research Computing Center</a>
+          </div>
+          Made with <i class="fa fa-heart md-highlight"></i> in
+          <span class="md-footer-copyright__highlight">
+            <a href='https://www.google.com/maps/place/Stanford,+CA'>Stanford, California</a>
+          </span></div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://srcc.stanford.edu" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/stanford-rc" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/StanfordCompute" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/school/1792/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.d3761d34.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../.."></script>
+      
+        <script src="../../../search/main.js"></script>
+      
+    
+  </body>
+</html>
